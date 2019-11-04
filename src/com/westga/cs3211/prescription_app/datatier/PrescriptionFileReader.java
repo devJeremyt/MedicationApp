@@ -1,0 +1,56 @@
+package com.westga.cs3211.prescription_app.datatier;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+import com.westga.cs3211.prescription_app.model.Prescription;
+import com.westga.cs3211.prescription_app.resources.ExceptionMessages;
+import com.westga.cs3211.prescription_app.resources.StaticFields;
+
+/**
+ * The PrescriptionFileReader Class
+ * 
+ * @author Jeremy Trimble
+ * @version 11/3/2019
+ *
+ */
+public class PrescriptionFileReader {
+	
+	/**
+	 * Returns a new Prescription List created from the file specified
+	 * 
+	 * @precondition filePath != null
+	 * 
+	 * @param filePath
+	 *            the file path of the photo album
+	 * 
+	 * @return a list of Prescriptions
+	 */
+	public static List<Prescription> readPrescriptionCSV(String filePath) {
+		if (filePath == null) {
+			throw new IllegalArgumentException(ExceptionMessages.NULL_FILE);
+		}
+		List<Prescription> prescriptions = new ArrayList<Prescription>();
+		try (Scanner scanner = new Scanner(new File(filePath))) {
+			while (scanner.hasNextLine()) {
+				String line = scanner.nextLine();
+				String[] fields = line.split(StaticFields.DELIMITER);
+				String name = fields[0];
+				boolean whileDriving = Boolean.parseBoolean(fields[1]);
+				boolean withoutAlcohol = Boolean.parseBoolean(fields[2]);
+				boolean withFood = Boolean.parseBoolean(fields[3]);
+				int renewFrequency = Integer.parseInt(fields[4]);
+				int dosageCount = Integer.parseInt(fields[5]);
+				int refillDosageCount = Integer.parseInt(fields[6]);
+				Prescription prescription = new Prescription(name, whileDriving, withoutAlcohol, withFood, renewFrequency, dosageCount, refillDosageCount);
+				prescriptions.add(prescription);
+			}
+		} catch (FileNotFoundException fnfe) {
+			System.err.println(fnfe.getMessage());
+		}
+		return prescriptions;
+	}
+}

@@ -11,10 +11,10 @@ import com.westga.cs3211.prescription_app.resources.ExceptionMessages;
  */
 public class Medication {
 	
-	String name;
-	boolean whileDriving;
-	boolean withoutAlcohol;
-	boolean withFood;
+	private String name;
+	private boolean whileDriving;
+	private boolean withoutAlcohol;
+	private boolean withFood;
 	
 	
 	/**
@@ -28,12 +28,12 @@ public class Medication {
 	 * @param withoutAlcohol	If true, do not take with alcohol
 	 * @param withFood			If true medication must be taken with food
 	 */
-	public Medication(String name, boolean whileDriving, boolean withoutAlcohol, boolean withFood) {
-		if(name.isEmpty()||name==null) {
+	public Medication(String name, boolean avoidDriving, boolean withoutAlcohol, boolean withFood) {
+		if (name.isEmpty() || name == null) {
 			throw new IllegalArgumentException(ExceptionMessages.NAME_NOT_EMPTY);
 		}
 		this.name = name;
-		this.whileDriving = whileDriving;
+		this.whileDriving = avoidDriving;
 		this.withoutAlcohol = withoutAlcohol;
 		this.withFood = withFood;
 	}

@@ -10,9 +10,9 @@ import com.westga.cs3211.prescription_app.resources.ExceptionMessages;
  */
 public class Prescription extends Medication {
 
-	int renewFrequency;
-	int dosageCount;
-	int refillDosageCount;
+	private int renewFrequency;
+	private int dosageCount;
+	private int refillDosageCount;
 	
 	/**
 	 * Creates a new Prescription
@@ -32,12 +32,13 @@ public class Prescription extends Medication {
 			int dosageCount, int refillDosageCount) {
 		super(name, whileDriving, withoutAlcohol, withFood);
 		
-		if(renewFrequency < 0) {
+		if (renewFrequency < 0) {
 			throw new IllegalArgumentException(ExceptionMessages.RENEW_LESS_THAN_ZERO);
 		}
-		if(dosageCount < 0) {
+		if (dosageCount < 0) {
 			throw new IllegalArgumentException(ExceptionMessages.DOSAGE_COUNT_LESS_THAN_ZERO);
-		}if(refillDosageCount <= 0) {
+		}
+		if (refillDosageCount <= 0) {
 			throw new IllegalArgumentException(ExceptionMessages.REFILL_LESS_THAN_ZERO);
 		}
 		this.renewFrequency = renewFrequency;
@@ -54,7 +55,7 @@ public class Prescription extends Medication {
 	 * @return the new count of doses
 	 */
 	public int takePrescription() {
-		if(this.dosageCount <= 0) {
+		if (this.dosageCount <= 0) {
 			throw new IllegalArgumentException(ExceptionMessages.DOSAGE_COUNT_LESS_THAN_ZERO);
 		}
 		
@@ -78,6 +79,8 @@ public class Prescription extends Medication {
 	 * 
 	 * @preconditions none
 	 * @postconditions none
+	 * 
+	 * @param renewFrequency How often a user must go to doctor to get prescription renewed
 	 * 
 	 */
 	public void setRenewFrequency(int renewFrequency) {
@@ -114,7 +117,8 @@ public class Prescription extends Medication {
 	 * @preconditions none
 	 * @postconditions none
 	 * 
-	 * @return the Refill Dosage Count
+	 * @param refillDosageCount	The number of doses provided with a refill
+	 * 
 	 */
 	public void setRefillDosageCount(int refillDosageCount) {
 		this.refillDosageCount = refillDosageCount;
