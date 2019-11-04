@@ -10,6 +10,6 @@ package com.westga.cs3211.prescription_app.resources;
 public class StaticFields {
 	
 	public static final String DELIMITER = ",";
-	public static final String CURRENT_PRESCRIPTION_FILE = "/currentPrescriptions.csv";
+	public static final String CURRENT_PRESCRIPTION_FILE = ".\\src\\com\\westga\\cs3211\\prescription_app\\currentPrescriptions.csv";
 	
 }

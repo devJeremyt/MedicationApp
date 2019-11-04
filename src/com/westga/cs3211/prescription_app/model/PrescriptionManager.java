@@ -1,5 +1,6 @@
 package com.westga.cs3211.prescription_app.model;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +32,7 @@ public class PrescriptionManager {
 			this.prescriptions = PrescriptionFileReader.readPrescriptionCSV(StaticFields.CURRENT_PRESCRIPTION_FILE);
 		} catch (Exception e) {
 			System.err.println(ExceptionMessages.ERROR_CREATING_MANAGER);
+			
 			this.prescriptions = new ArrayList<Prescription>();
 		}
 	}
@@ -44,4 +46,18 @@ public class PrescriptionManager {
 		this.prescriptions.add(prescription);
 		PrescriptionFileWriter.addPrescriptionToCSV(StaticFields.CURRENT_PRESCRIPTION_FILE, prescription);
 	}
+
+	/**
+	 * Returns the list object of the prescriptions
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the list of prescriptions
+	 */
+	public List<Prescription> getPrescriptions() {
+		return this.prescriptions;
+	}
+	
+	
 }

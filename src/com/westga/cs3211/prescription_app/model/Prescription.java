@@ -45,7 +45,7 @@ public class Prescription extends Medication {
 		this.renewFrequency = renewFrequency;
 		this.dosageCount = dosageCount;
 		this.refillDosageCount = refillDosageCount;
-		this.active = true;
+		this.setActive(true);
 	}
 	
 	/**
@@ -80,7 +80,7 @@ public class Prescription extends Medication {
 	 * Sets the RenewFrequency
 	 * 
 	 * @preconditions none
-	 * @postconditions none
+	 * @postconditions getRenewFrequency() == renewFrequency
 	 * 
 	 * @param renewFrequency How often a user must go to doctor to get prescription renewed
 	 * 
@@ -117,13 +117,37 @@ public class Prescription extends Medication {
 	 * Sets the Refill Dosage Count
 	 * 
 	 * @preconditions none
-	 * @postconditions none
+	 * @postconditions getRefillDosageCount() == refillDosageCount
 	 * 
 	 * @param refillDosageCount	The number of doses provided with a refill
 	 * 
 	 */
 	public void setRefillDosageCount(int refillDosageCount) {
 		this.refillDosageCount = refillDosageCount;
+	}
+
+	/**
+	 * Returns if the Prescription is active or not
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return true is the Prescription is active else false
+	 */
+	public boolean isActive() {
+		return this.active;
+	}
+
+	/**
+	 * Sets whether the Prescription is active or not
+	 * 
+	 * @precondition none
+	 * @postcondition isActive() == active
+	 * 
+	 * @param active the active state the Prescription is being set to.
+	 */
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	
 	
