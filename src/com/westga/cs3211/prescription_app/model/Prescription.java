@@ -13,6 +13,7 @@ public class Prescription extends Medication {
 	private int renewFrequency;
 	private int dosageCount;
 	private int refillDosageCount;
+	private boolean active;
 	
 	/**
 	 * Creates a new Prescription
@@ -44,6 +45,7 @@ public class Prescription extends Medication {
 		this.renewFrequency = renewFrequency;
 		this.dosageCount = dosageCount;
 		this.refillDosageCount = refillDosageCount;
+		this.active = true;
 	}
 	
 	/**

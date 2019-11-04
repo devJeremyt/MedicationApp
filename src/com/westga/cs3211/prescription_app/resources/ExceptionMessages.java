@@ -16,5 +16,6 @@ public class ExceptionMessages {
 	public static final String REFILL_LESS_THAN_ZERO = "Refill Dosage count must be greater than 0.";
 	public static final String NULL_FILE = "File trying to be read is null.";
 	public static final String NULL_PRESCRIPTION = "Prescription cannot be null";
+	public static final String ERROR_CREATING_MANAGER = "An Error occurred trying to make a manager";
 
 }

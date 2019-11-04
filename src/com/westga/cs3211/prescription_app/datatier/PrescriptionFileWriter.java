@@ -27,15 +27,15 @@ public class PrescriptionFileWriter {
 	 * @param file the file prescriptions are saved too
 	 * @param prescription the prescription to be saved
 	 */
-	public static void addPrescriptionToCSV(File file, Prescription prescription) {
-		if (file == null) {
+	public static void addPrescriptionToCSV(String filePath, Prescription prescription) {
+		if (filePath == null) {
 			throw new IllegalArgumentException(ExceptionMessages.NULL_FILE);
 		}
 		if (prescription == null) {
 			throw new IllegalArgumentException(ExceptionMessages.NULL_PRESCRIPTION);
 		}
 		
-		try (FileWriter writer = new FileWriter(file)) {
+		try (FileWriter writer = new FileWriter(new File(filePath))) {
 			String content = "";
 			
 			content += prescription.getName() + StaticFields.DELIMITER;

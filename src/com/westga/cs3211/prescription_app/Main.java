@@ -9,7 +9,7 @@ import javafx.fxml.FXMLLoader;
 /**
  * The main class of the application
  * @author Jeremy Trimble
- * @version 11/2/2019
+ * @version 10/29/2019
  *
  */
 public class Main extends Application {
