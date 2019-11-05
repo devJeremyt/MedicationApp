@@ -12,7 +12,7 @@ import com.westga.cs3211.prescription_app.resources.ExceptionMessages;
 public class Medication {
 	
 	private String name;
-	private boolean whileDriving;
+	private boolean avoidDriving;
 	private boolean withoutAlcohol;
 	private boolean withFood;
 	
@@ -29,11 +29,11 @@ public class Medication {
 	 * @param withFood			If true medication must be taken with food
 	 */
 	public Medication(String name, boolean avoidDriving, boolean withoutAlcohol, boolean withFood) {
-		if (name.isEmpty() || name == null) {
+		if (name == null || name.isEmpty()) {
 			throw new IllegalArgumentException(ExceptionMessages.NAME_NOT_EMPTY);
 		}
 		this.name = name;
-		this.whileDriving = avoidDriving;
+		this.avoidDriving = avoidDriving;
 		this.withoutAlcohol = withoutAlcohol;
 		this.withFood = withFood;
 	}
@@ -60,8 +60,8 @@ public class Medication {
 	 * 
 	 * @return true if the medication should not be taken while driving
 	 */
-	public boolean isWhileDriving() {
-		return this.whileDriving;
+	public boolean avoidDriving() {
+		return this.avoidDriving;
 	}
 	
 	/**
@@ -72,7 +72,7 @@ public class Medication {
 	 * 
 	 * @return true if the medication should not be taken with alcohol
 	 */
-	public boolean isWithoutAlcohol() {
+	public boolean withoutAlcohol() {
 		return this.withoutAlcohol;
 	}
 	
@@ -84,11 +84,7 @@ public class Medication {
 	 * 
 	 * @return true if the medication should be taken with food
 	 */
-	public boolean isWithFood() {
+	public boolean withFood() {
 		return this.withFood;
 	}
-	
-	
-	
-
 }

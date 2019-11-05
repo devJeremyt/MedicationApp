@@ -13,10 +13,26 @@ class TestMedicationConstructor {
 		Medication med = new Medication("Water", false, false, false);
 		
 		assertEquals("Water",med.getName());
-		assertEquals(false, med.isWhileDriving());
-		assertEquals(false, med.isWithFood());
-		assertEquals(false, med.isWithoutAlcohol());
+		assertEquals(false, med.avoidDriving());
+		assertEquals(false, med.withFood());
+		assertEquals(false, med.withoutAlcohol());
 		
 	}
 
+	@Test
+	void testNameIsEmpty() {	
+		assertThrows(IllegalArgumentException.class, ()->{
+			new Medication("", false, false, false);
+		});
+		
+	}
+	
+	@Test
+	void testNameIsNull() {
+		assertThrows(IllegalArgumentException.class, ()->{
+			new Medication(null, false, false, false);
+		});
+		
+		
+	}
 }

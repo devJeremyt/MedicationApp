@@ -29,7 +29,7 @@ public class PrescriptionAppViewModel {
 	public PrescriptionAppViewModel() {
 		this.manager = new PrescriptionManager();
 		this.prescriptionListProperty = new SimpleListProperty<Prescription>();
-		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.manager));
+		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.manager.getPrescriptions()));
 	}
 
 	/**
@@ -43,4 +43,6 @@ public class PrescriptionAppViewModel {
 	public void addPrescription(Prescription prescription) {
 		this.manager.add(prescription);
 	}
+	
+	
 }

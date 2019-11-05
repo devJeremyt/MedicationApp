@@ -39,17 +39,20 @@ public class PrescriptionFileReader {
 				String line = scanner.nextLine();
 				String[] fields = line.split(StaticFields.DELIMITER);
 				String name = fields[0];
-				boolean whileDriving = Boolean.parseBoolean(fields[1]);
+				boolean avoidDriving = Boolean.parseBoolean(fields[1]);
 				boolean withoutAlcohol = Boolean.parseBoolean(fields[2]);
 				boolean withFood = Boolean.parseBoolean(fields[3]);
 				int renewFrequency = Integer.parseInt(fields[4]);
 				int dosageCount = Integer.parseInt(fields[5]);
 				int refillDosageCount = Integer.parseInt(fields[6]);
-				Prescription prescription = new Prescription(name, whileDriving, withoutAlcohol, withFood, renewFrequency, dosageCount, refillDosageCount);
+				Prescription prescription = new Prescription(name, avoidDriving, withoutAlcohol, withFood, renewFrequency, dosageCount, refillDosageCount);
 				prescriptions.add(prescription);
 			}
 		} catch (FileNotFoundException fnfe) {
 			System.err.println(fnfe.getMessage());
+		} catch (IndexOutOfBoundsException ioobe) {
+			System.err.println(ioobe.getMessage());
+			System.err.println(ExceptionMessages.CORRUPT_DATA_FILE);
 		}
 		return prescriptions;
 	}

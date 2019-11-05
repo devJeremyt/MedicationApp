@@ -22,16 +22,16 @@ public class Prescription extends Medication {
 	 * @postconditions a new prescription is created
 	 * 
 	 * @param name 					The name of the prescrition
-	 * @param whileDriving 			If true do not take medication while driving
+	 * @param avoidDriving 			If true do not take medication while driving
 	 * @param withoutAlcohol		If true do not take medication with alcohol
 	 * @param withFood				If true medication must be taken with food
 	 * @param renewFrequency		How often a user must go to doctor to get prescription renewed
 	 * @param dosageCount			The current count of doses
 	 * @param refillDosageCount		The number of doses provided with a refill
 	 */
-	public Prescription(String name, boolean whileDriving, boolean withoutAlcohol, boolean withFood, int renewFrequency,
+	public Prescription(String name, boolean avoidDriving, boolean withoutAlcohol, boolean withFood, int renewFrequency,
 			int dosageCount, int refillDosageCount) {
-		super(name, whileDriving, withoutAlcohol, withFood);
+		super(name, avoidDriving, withoutAlcohol, withFood);
 		
 		if (renewFrequency < 0) {
 			throw new IllegalArgumentException(ExceptionMessages.RENEW_LESS_THAN_ZERO);

@@ -51,7 +51,17 @@ public class PrescriptionManager {
 		return false;
 	}
 
-
+	/**
+	 * Returns the list object of the prescriptions
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the list of prescriptions
+	 */
+	public List<Prescription> getPrescriptions() {
+		return this.prescriptions;
+	}
 	
 	
 }

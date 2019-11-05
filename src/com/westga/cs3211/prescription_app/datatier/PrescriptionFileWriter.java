@@ -39,9 +39,9 @@ public class PrescriptionFileWriter {
 			String content = "";
 			
 			content += prescription.getName() + StaticFields.DELIMITER;
-			content += prescription.isWhileDriving() + StaticFields.DELIMITER;
-			content += prescription.isWithoutAlcohol() + StaticFields.DELIMITER;
-			content += prescription.isWithFood() + StaticFields.DELIMITER;
+			content += prescription.avoidDriving() + StaticFields.DELIMITER;
+			content += prescription.withoutAlcohol() + StaticFields.DELIMITER;
+			content += prescription.withFood() + StaticFields.DELIMITER;
 			content += prescription.getRenewFrequency() + StaticFields.DELIMITER;
 			content += prescription.getDosageCount() + StaticFields.DELIMITER;
 			content += prescription.getRefillDosageCount() + StaticFields.DELIMITER;
