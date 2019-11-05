@@ -22,9 +22,9 @@ public class PrescriptionFileWriter {
 	/**
 	 * Saves the specified list of prescriptions to the file specified
 	 * 
-	 * @preconditions file != null && prescriptions != null
+	 * @preconditions filePath != null && prescription != null
 	 * @postconditions file contains the prescription data
-	 * @param file the file prescriptions are saved too
+	 * @param filePath the path to the file prescriptions are saved too
 	 * @param prescription the prescription to be saved
 	 */
 	public static void addPrescriptionToCSV(String filePath, Prescription prescription) {

@@ -1,6 +1,5 @@
 package com.westga.cs3211.prescription_app.model;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
