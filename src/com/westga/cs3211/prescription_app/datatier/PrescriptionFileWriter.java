@@ -35,7 +35,7 @@ public class PrescriptionFileWriter {
 			throw new IllegalArgumentException(ExceptionMessages.NULL_PRESCRIPTION);
 		}
 		
-		try (FileWriter writer = new FileWriter(new File(filePath))) {
+		try (FileWriter writer = new FileWriter(new File(filePath), true)) {
 			String content = "";
 			
 			content += prescription.getName() + StaticFields.DELIMITER;

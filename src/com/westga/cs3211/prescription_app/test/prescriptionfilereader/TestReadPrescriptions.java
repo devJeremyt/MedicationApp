@@ -2,7 +2,6 @@ package com.westga.cs3211.prescription_app.test.prescriptionfilereader;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import java.io.File;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
