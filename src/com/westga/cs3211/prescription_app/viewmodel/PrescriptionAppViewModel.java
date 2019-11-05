@@ -4,6 +4,7 @@ import com.westga.cs3211.prescription_app.model.Prescription;
 import com.westga.cs3211.prescription_app.model.PrescriptionManager;
 
 import javafx.beans.property.ListProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.collections.FXCollections;
 
 /**
@@ -27,7 +28,8 @@ public class PrescriptionAppViewModel {
 	 */
 	public PrescriptionAppViewModel() {
 		this.manager = new PrescriptionManager();
-		this.prescriptionListProperty.set(FXCollections.observableList(this.manager.getPrescriptions()));
+		this.prescriptionListProperty = new SimpleListProperty<Prescription>();
+		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.manager));
 	}
 
 	/**

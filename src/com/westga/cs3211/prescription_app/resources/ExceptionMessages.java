@@ -17,6 +17,5 @@ public class ExceptionMessages {
 	public static final String NULL_FILE = "File trying to be read is null.";
 	public static final String NULL_PRESCRIPTION = "Prescription cannot be null";
 	public static final String ERROR_CREATING_MANAGER = "An Error occurred trying to make a manager";
-	public static final String CREATING_NEW_PRESCRIPTION_WINDOW = "An error occuring while trying to create the page for entering a new prescription.";
 
 }

@@ -40,23 +40,18 @@ public class PrescriptionManager {
 	 * Adds a prescription to the list of prescriptions
 	 * 
 	 * @param prescription the prescription being added the list of prescriptions
+	 * 
+	 * @return true if the specified prescription is successfully added, else false
 	 */
-	public void add(Prescription prescription) {
-		this.prescriptions.add(prescription);
-		PrescriptionFileWriter.addPrescriptionToCSV(StaticFields.CURRENT_PRESCRIPTION_FILE, prescription);
+	public boolean add(Prescription prescription) {
+		if (this.prescriptions.add(prescription)) {
+			PrescriptionFileWriter.addPrescriptionToCSV(StaticFields.CURRENT_PRESCRIPTION_FILE, prescription);
+		} 
+		
+		return false;
 	}
 
-	/**
-	 * Returns the list object of the prescriptions
-	 * 
-	 * @precondition none
-	 * @postcondition none
-	 * 
-	 * @return the list of prescriptions
-	 */
-	public List<Prescription> getPrescriptions() {
-		return this.prescriptions;
-	}
+
 	
 	
 }

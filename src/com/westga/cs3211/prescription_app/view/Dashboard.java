@@ -72,14 +72,14 @@ public class Dashboard {
 	public void addPrescription() {
 		try {
 			Stage newPrescriptionModal = new Stage();
-			Pane pane = FXMLLoader.load(getClass().getResource("./view/Main.fxml"));
+			Pane pane = FXMLLoader.load(getClass().getResource("NewMed.fxml"));
 			Scene scene = new Scene(pane);
 			newPrescriptionModal.setScene(scene);
 			newPrescriptionModal.initOwner(this.addButton.getScene().getWindow());
 			newPrescriptionModal.initModality(Modality.APPLICATION_MODAL);
 			newPrescriptionModal.showAndWait();
 		} catch (Exception e) {
-			System.err.println(ExceptionMessages.CREATING_NEW_PRESCRIPTION_WINDOW);
+			System.err.println(e.getMessage());
 		}
 		
 	}
