@@ -2,6 +2,7 @@ package com.westga.cs3211.prescription_app.test.prescriptionfilewriter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
@@ -14,7 +15,7 @@ import com.westga.cs3211.prescription_app.model.Prescription;
 class TestAddPrescriptionToCSV {
 
 	@Test
-	void testNulPrescription() {
+	void testNullPrescription() {
 		assertThrows(IllegalArgumentException.class, ()->{
 			PrescriptionFileWriter.addPrescriptionToCSV(".\\src\\com\\westga\\cs3211\\prescription_app\\test\\prescriptionfilewriter\\NotCreated.csv", null);
 		});
@@ -42,6 +43,7 @@ class TestAddPrescriptionToCSV {
 		assertEquals(1, prescriptions.get(0).getDosageCount());
 		assertEquals(1, prescriptions.get(0).getRefillDosageCount());
 		
+		// Rewrites the test file to be blank.
 		try {
 			PrintWriter eraser = new PrintWriter(".\\src\\com\\westga\\cs3211\\prescription_app\\test\\prescriptionfilewriter\\testInitiallyEmpty.csv");
 			eraser.write("");
@@ -66,6 +68,15 @@ class TestAddPrescriptionToCSV {
 		assertEquals(1, prescriptions.get(prescriptions.size()-1).getRenewFrequency());
 		assertEquals(1, prescriptions.get(prescriptions.size()-1).getDosageCount());
 		assertEquals(1, prescriptions.get(prescriptions.size()-1).getRefillDosageCount());
+		
+	}
+	
+	@Test
+	public void testIOExceptionThrown() {
+				
+		assertThrows(IOException.class, ()->{
+			PrescriptionFileWriter.addPrescriptionToCSV(".\\src\\com\\westga\\cs3211\\prescription_app\\test\\prescriptionfilewriter\\LockedFile.csv", new Prescription("Gatorade", false, false, true, 1, 1, 1));
+		});
 		
 	}
 }

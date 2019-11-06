@@ -1,7 +1,6 @@
 package com.westga.cs3211.prescription_app.view;
 
 import com.westga.cs3211.prescription_app.model.Prescription;
-import com.westga.cs3211.prescription_app.resources.ExceptionMessages;
 import com.westga.cs3211.prescription_app.viewmodel.PrescriptionAppViewModel;
 
 import javafx.fxml.FXML;
@@ -51,25 +50,35 @@ public class Dashboard {
     private void initialize() {
     	this.setupBinding();
     	this.setupListeners();
+
     }
 
 	private void setupListeners() {
-		// TODO 
+		this.prescriptionListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->{
+			if (newValue == null) {
+				this.updateButton.disableProperty().set(true);
+				this.viewDetailsButton.disableProperty().set(true);
+			} else {
+				this.updateButton.disableProperty().set(false);
+				this.viewDetailsButton.disableProperty().set(false);
+			}
+		});
 		
 	}
 
 	private void setupBinding() {
-		// TODO 
-		
+		this.prescriptionListView.itemsProperty().bindBidirectional(this.viewmodel.prescriptionListProperty());
+		this.updateButton.disableProperty().bind(this.viewmodel.emptyPrescriptionList().or(this.prescriptionListView.getSelectionModel().selectedItemProperty().isNull()));
+		this.viewDetailsButton.disableProperty().bind(this.viewmodel.emptyPrescriptionList().or(this.prescriptionListView.getSelectionModel().selectedItemProperty().isNull()));
 	}
 	
 	/**
-	 * Adds a new prescription to the prescription list
+	 * Opens the NewMed Modal Dialog
 	 * 
 	 * @precondition none
 	 * @postcondition none
 	 */
-	public void addPrescription() {
+	public void openNewMedDialog() {
 		try {
 			Stage newPrescriptionModal = new Stage();
 			Pane pane = FXMLLoader.load(getClass().getResource("NewMed.fxml"));
