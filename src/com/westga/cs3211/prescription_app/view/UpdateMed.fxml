@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="600.0" minWidth="400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westga.cs3211.prescription_app.view.NewMed">
+<AnchorPane minHeight="600.0" minWidth="400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westga.cs3211.prescription_app.view.UpdateMed">
    <children>
       <Pane prefHeight="200.0" prefWidth="392.0">
          <children>
@@ -106,12 +106,12 @@
          </font>
       </Label>
       <TextArea fx:id="instructions" layoutX="43.0" layoutY="443.0" prefHeight="89.0" prefWidth="315.0" />
-      <Button fx:id="addBtn" cancelButton="true" layoutX="127.0" layoutY="543.0" mnemonicParsing="false" onAction="#addPrescription" text="Add">
+      <Button fx:id="updateBtn" cancelButton="true" layoutX="105.0" layoutY="543.0" mnemonicParsing="false" onAction="#updatePrescription" text="Update">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="cancelBtn" cancelButton="true" layoutX="219.0" layoutY="543.0" mnemonicParsing="false" onAction="#cancel" text="Cancel">
+      <Button fx:id="cancelBtn" cancelButton="true" layoutX="229.0" layoutY="543.0" mnemonicParsing="false" onAction="#cancel" text="Cancel">
          <font>
             <Font size="14.0" />
          </font>

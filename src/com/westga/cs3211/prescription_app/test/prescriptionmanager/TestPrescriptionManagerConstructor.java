@@ -1,6 +1,5 @@
 package com.westga.cs3211.prescription_app.test.prescriptionmanager;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 

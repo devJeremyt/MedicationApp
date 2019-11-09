@@ -29,6 +29,7 @@ public class Prescription extends Medication {
 	 * @param renewFrequency		How often a user must go to doctor to get prescription renewed
 	 * @param dosageCount			The current count of doses
 	 * @param refillDosageCount		The number of doses provided with a refill
+	 * @param instructions			The instructions on how to take the prescription
 	 */
 	public Prescription(String name, boolean avoidDriving, boolean withoutAlcohol, boolean withFood, int renewFrequency,
 			int dosageCount, int refillDosageCount, String instructions) {

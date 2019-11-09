@@ -103,5 +103,32 @@ public class Dashboard {
 		
 	}
 	
+	/**
+	 * Opens the NewMed Modal Dialog
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 */
+	public void openUpdateMedDialog() {
+		try {
+			Stage newPrescriptionModal = new Stage();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("UpdateMed.fxml"));
+			loader.load();
+			Pane pane = loader.getRoot();
+			Scene scene = new Scene(pane);
+			newPrescriptionModal.setScene(scene);
+			newPrescriptionModal.initOwner(this.updateButton.getScene().getWindow());
+			newPrescriptionModal.initModality(Modality.APPLICATION_MODAL);
+			UpdateMed updateMed = loader.getController();
+			updateMed.bindViews(this.viewmodel, this.prescriptionListView.getSelectionModel().getSelectedItem());
+			newPrescriptionModal.showAndWait();
+
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		
+	}
+	
 
 }

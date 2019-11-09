@@ -13,7 +13,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="updateButton" layoutX="283.0" layoutY="21.0" mnemonicParsing="false" text="Update">
+      <Button fx:id="updateButton" layoutX="283.0" layoutY="21.0" mnemonicParsing="false" onAction="#openUpdateMedDialog" text="Update">
          <font>
             <Font size="14.0" />
          </font>

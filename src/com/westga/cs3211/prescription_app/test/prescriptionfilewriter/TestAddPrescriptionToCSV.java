@@ -3,7 +3,6 @@ package com.westga.cs3211.prescription_app.test.prescriptionfilewriter;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.util.List;
@@ -85,6 +84,6 @@ class TestAddPrescriptionToCSV {
 
 		assertEquals("asdf", errContent.toString());
 		
-		System.setErr(System.err);
+		System.setErr(originalOut);
 	}
 }
