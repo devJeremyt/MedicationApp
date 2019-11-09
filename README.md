@@ -5,3 +5,5 @@ All .jar files, and only .jar files need to be loaded into the libraries of the 
 
 To execute you must add "--module-path "${eclipse_home}/javafx-sdk-11.0.2/lib" --add-modules
 javafx.controls,javafx.fxml" to the VM Arguments in the run configuration
+
+Currently saves all data to csv.
