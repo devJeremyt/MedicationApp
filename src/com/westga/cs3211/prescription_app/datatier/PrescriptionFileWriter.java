@@ -39,18 +39,20 @@ public class PrescriptionFileWriter {
 			String content = "";
 			
 			content += prescription.getName() + StaticFields.DELIMITER;
-			content += prescription.avoidDriving() + StaticFields.DELIMITER;
-			content += prescription.withoutAlcohol() + StaticFields.DELIMITER;
-			content += prescription.withFood() + StaticFields.DELIMITER;
+			content += prescription.getAvoidDriving() + StaticFields.DELIMITER;
+			content += prescription.getWithoutAlcohol() + StaticFields.DELIMITER;
+			content += prescription.getWithFood() + StaticFields.DELIMITER;
 			content += prescription.getRenewFrequency() + StaticFields.DELIMITER;
 			content += prescription.getDosageCount() + StaticFields.DELIMITER;
 			content += prescription.getRefillDosageCount() + StaticFields.DELIMITER;
+			content += prescription.getInstructions() + StaticFields.DELIMITER;
 			content += System.lineSeparator();
 			
 			writer.append(content);
 			
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
+			
 		}
 	}
 

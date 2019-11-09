@@ -43,24 +43,28 @@ public class Dashboard {
      * 
      */
     public Dashboard() {
-    	this.viewmodel = new PrescriptionAppViewModel();
+    	
     }
     
     @FXML
     private void initialize() {
+    	this.viewmodel = new PrescriptionAppViewModel();
+    	this.updateButton.disableProperty().set(true);
+    	this.viewDetailsButton.disableProperty().set(true);
     	this.setupBinding();
     	this.setupListeners();
+
 
     }
 
 	private void setupListeners() {
-		this.prescriptionListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->{
-			if (newValue == null) {
-				this.updateButton.disableProperty().set(true);
-				this.viewDetailsButton.disableProperty().set(true);
-			} else {
+		this.prescriptionListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+			if (newValue != null) {
 				this.updateButton.disableProperty().set(false);
 				this.viewDetailsButton.disableProperty().set(false);
+			} else {
+				this.updateButton.disableProperty().set(true);
+				this.viewDetailsButton.disableProperty().set(true);
 			}
 		});
 		
@@ -68,8 +72,8 @@ public class Dashboard {
 
 	private void setupBinding() {
 		this.prescriptionListView.itemsProperty().bindBidirectional(this.viewmodel.prescriptionListProperty());
-		this.updateButton.disableProperty().bind(this.viewmodel.emptyPrescriptionList().or(this.prescriptionListView.getSelectionModel().selectedItemProperty().isNull()));
-		this.viewDetailsButton.disableProperty().bind(this.viewmodel.emptyPrescriptionList().or(this.prescriptionListView.getSelectionModel().selectedItemProperty().isNull()));
+//		this.updateButton.disableProperty().bind(this.viewmodel.emptyPrescriptionList().or(this.prescriptionListView.getSelectionModel().selectedItemProperty().isNull()));
+//		this.viewDetailsButton.disableProperty().bind(this.viewmodel.emptyPrescriptionList().or(this.prescriptionListView.getSelectionModel().selectedItemProperty().isNull()));
 	}
 	
 	/**
@@ -81,12 +85,18 @@ public class Dashboard {
 	public void openNewMedDialog() {
 		try {
 			Stage newPrescriptionModal = new Stage();
-			Pane pane = FXMLLoader.load(getClass().getResource("NewMed.fxml"));
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("NewMed.fxml"));
+			loader.load();
+			Pane pane = loader.getRoot();
 			Scene scene = new Scene(pane);
 			newPrescriptionModal.setScene(scene);
 			newPrescriptionModal.initOwner(this.addButton.getScene().getWindow());
 			newPrescriptionModal.initModality(Modality.APPLICATION_MODAL);
+			NewMed newMed = loader.getController();
+			newMed.bindViews(this.viewmodel);
 			newPrescriptionModal.showAndWait();
+
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}

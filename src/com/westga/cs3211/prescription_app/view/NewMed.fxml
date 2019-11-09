@@ -12,10 +12,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane minHeight="550.0" minWidth="400.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.1">
+<AnchorPane minHeight="600.0" minWidth="400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westga.cs3211.prescription_app.view.NewMed">
    <children>
-      <Pane layoutX="2.0" prefHeight="154.0" prefWidth="392.0">
+      <Pane prefHeight="200.0" prefWidth="392.0">
          <children>
             <Label layoutX="167.0" layoutY="22.0" text="Name">
                <font>
@@ -23,7 +22,7 @@
                </font>
             </Label>
             <TextField id="name" fx:id="name" layoutX="214.0" layoutY="19.0" />
-            <Label layoutX="157.0" layoutY="58.0" text="Dosage">
+            <Label layoutX="66.0" layoutY="58.0" text="Current Dosage Count">
                <font>
                   <Font size="14.0" />
                </font>
@@ -41,10 +40,13 @@
                </font>
             </Label>
             <TextField fx:id="dosesPerRefill" layoutX="214.0" layoutY="121.0" />
+            <CheckBox fx:id="avoidDrivingCheck" layoutX="22.0" layoutY="168.0" mnemonicParsing="false" text="Don't take while driving" />
+            <CheckBox fx:id="withoutAlcoholCheck" layoutX="22.0" layoutY="151.0" mnemonicParsing="false" text="Don't take with Alcohol" />
+            <CheckBox fx:id="withFoodCheck" layoutX="214.0" layoutY="159.0" mnemonicParsing="false" text="Take with Food" />
          </children>
       </Pane>
-      <Separator layoutY="157.0" prefHeight="3.0" prefWidth="400.0" />
-      <Pane layoutX="4.0" layoutY="158.0" prefHeight="211.0" prefWidth="392.0">
+      <Separator layoutX="1.0" layoutY="202.0" prefHeight="3.0" prefWidth="400.0" />
+      <Pane layoutX="4.0" layoutY="203.0" prefHeight="211.0" prefWidth="392.0">
          <children>
             <Label layoutX="76.0" layoutY="14.0" text="Select day and time to take precription">
                <font>
@@ -97,19 +99,19 @@
             <ListView layoutX="175.0" layoutY="109.0" prefHeight="89.0" prefWidth="200.0" />
          </children>
       </Pane>
-      <Separator layoutY="363.0" prefHeight="3.0" prefWidth="400.0" />
-      <Label layoutX="164.0" layoutY="369.0" text="Instructions">
+      <Separator layoutY="413.0" prefHeight="3.0" prefWidth="400.0" />
+      <Label layoutX="164.0" layoutY="414.0" text="Instructions">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextArea fx:id="instructions" layoutX="43.0" layoutY="398.0" prefHeight="89.0" prefWidth="315.0" />
-      <Button fx:id="addBtn" layoutX="127.0" layoutY="498.0" mnemonicParsing="false" text="Add">
+      <TextArea fx:id="instructions" layoutX="43.0" layoutY="443.0" prefHeight="89.0" prefWidth="315.0" />
+      <Button fx:id="addBtn" cancelButton="true" defaultButton="true" layoutX="127.0" layoutY="543.0" mnemonicParsing="false" onAction="#addPrescription" text="Add">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="cancelBtn" layoutX="219.0" layoutY="498.0" mnemonicParsing="false" text="Cancel">
+      <Button fx:id="cancelBtn" cancelButton="true" layoutX="219.0" layoutY="543.0" mnemonicParsing="false" text="Cancel">
          <font>
             <Font size="14.0" />
          </font>

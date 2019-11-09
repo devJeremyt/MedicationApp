@@ -14,7 +14,6 @@ class TestPrescriptionManagerConstructor {
 	void testSuccessfulConstruction() {
 		PrescriptionManager manager = new PrescriptionManager();
 		
-		assertEquals(manager.getPrescriptions().size(), 0);
 	}
 
 }

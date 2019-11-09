@@ -17,9 +17,9 @@ class TestReadPrescriptions {
 		List<Prescription> prescriptions = PrescriptionFileReader.readPrescriptionCSV(".\\src\\com\\westga\\cs3211\\prescription_app\\test\\prescriptionfilereader\\testDataSet1.csv");
 		
 		assertEquals("Asprin", prescriptions.get(0).getName());
-		assertEquals(false, prescriptions.get(0).avoidDriving());
-		assertEquals(false, prescriptions.get(0).withoutAlcohol());
-		assertEquals(false, prescriptions.get(0).withFood());
+		assertEquals(false, prescriptions.get(0).getAvoidDriving());
+		assertEquals(false, prescriptions.get(0).getWithoutAlcohol());
+		assertEquals(false, prescriptions.get(0).getWithFood());
 		assertEquals(30, prescriptions.get(0).getRenewFrequency());
 		assertEquals(5, prescriptions.get(0).getDosageCount());
 		assertEquals(31, prescriptions.get(0).getRefillDosageCount());
@@ -51,6 +51,12 @@ class TestReadPrescriptions {
 		
 		assertEquals(true, prescriptions.isEmpty());
 		
+	}
+	
+	@Test
+	void testFilePathNull() {
+		
+		assertThrows(IllegalArgumentException.class, ()->PrescriptionFileReader.readPrescriptionCSV(null));
 	}
 
 }

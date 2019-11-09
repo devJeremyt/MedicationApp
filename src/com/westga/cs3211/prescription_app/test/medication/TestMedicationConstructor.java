@@ -13,9 +13,9 @@ class TestMedicationConstructor {
 		Medication med = new Medication("Water", false, false, false);
 		
 		assertEquals("Water",med.getName());
-		assertEquals(false, med.avoidDriving());
-		assertEquals(false, med.withFood());
-		assertEquals(false, med.withoutAlcohol());
+		assertEquals(false, med.getAvoidDriving());
+		assertEquals(false, med.getWithFood());
+		assertEquals(false, med.getWithoutAlcohol());
 		
 	}
 

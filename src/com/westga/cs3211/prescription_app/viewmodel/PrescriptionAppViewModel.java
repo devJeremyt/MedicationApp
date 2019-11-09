@@ -36,6 +36,7 @@ public class PrescriptionAppViewModel {
 		this.emptyPrescriptionList = new SimpleBooleanProperty(true);
 	}
 
+
 	/**
 	 * Boolean Property for if the list of prescription is empty
 	 * 
@@ -58,6 +59,7 @@ public class PrescriptionAppViewModel {
 	 */
 	public void addPrescription(Prescription prescription) {
 		this.manager.add(prescription);
+		this.prescriptionListProperty.add(prescription);
 	}
 
 	/**

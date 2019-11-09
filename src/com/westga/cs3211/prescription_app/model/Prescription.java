@@ -14,6 +14,7 @@ public class Prescription extends Medication {
 	private int dosageCount;
 	private int refillDosageCount;
 	private boolean active;
+	private String instructions;
 	
 	/**
 	 * Creates a new Prescription
@@ -30,7 +31,7 @@ public class Prescription extends Medication {
 	 * @param refillDosageCount		The number of doses provided with a refill
 	 */
 	public Prescription(String name, boolean avoidDriving, boolean withoutAlcohol, boolean withFood, int renewFrequency,
-			int dosageCount, int refillDosageCount) {
+			int dosageCount, int refillDosageCount, String instructions) {
 		super(name, avoidDriving, withoutAlcohol, withFood);
 		
 		if (renewFrequency < 0) {
@@ -45,7 +46,8 @@ public class Prescription extends Medication {
 		this.renewFrequency = renewFrequency;
 		this.dosageCount = dosageCount;
 		this.refillDosageCount = refillDosageCount;
-		this.setActive(true);
+		this.active = true;
+		this.instructions = instructions;
 	}
 	
 	/**
@@ -149,6 +151,27 @@ public class Prescription extends Medication {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+	
+	/**
+	 * 
+	 * Returns the instructions
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * 
+	 * @return a string of the instructions for the prescription
+	 */
+	public String getInstructions() {
+		return this.instructions;
+	}
+	
+	@Override
+	public String toString() {
+		return this.getName();
+	}
+
+
 	
 	
 }

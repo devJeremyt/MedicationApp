@@ -45,7 +45,12 @@ public class PrescriptionFileReader {
 				int renewFrequency = Integer.parseInt(fields[4]);
 				int dosageCount = Integer.parseInt(fields[5]);
 				int refillDosageCount = Integer.parseInt(fields[6]);
-				Prescription prescription = new Prescription(name, avoidDriving, withoutAlcohol, withFood, renewFrequency, dosageCount, refillDosageCount);
+				String instructions = "";
+				if (fields.length == 8) {
+					instructions = fields[7];
+				}
+				
+				Prescription prescription = new Prescription(name, avoidDriving, withoutAlcohol, withFood, renewFrequency, dosageCount, refillDosageCount, instructions);
 				prescriptions.add(prescription);
 			}
 		} catch (FileNotFoundException fnfe) {

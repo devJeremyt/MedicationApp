@@ -60,7 +60,7 @@ public class Medication {
 	 * 
 	 * @return true if the medication should not be taken while driving
 	 */
-	public boolean avoidDriving() {
+	public boolean getAvoidDriving() {
 		return this.avoidDriving;
 	}
 	
@@ -72,7 +72,7 @@ public class Medication {
 	 * 
 	 * @return true if the medication should not be taken with alcohol
 	 */
-	public boolean withoutAlcohol() {
+	public boolean getWithoutAlcohol() {
 		return this.withoutAlcohol;
 	}
 	
@@ -84,7 +84,7 @@ public class Medication {
 	 * 
 	 * @return true if the medication should be taken with food
 	 */
-	public boolean withFood() {
+	public boolean getWithFood() {
 		return this.withFood;
 	}
 }
