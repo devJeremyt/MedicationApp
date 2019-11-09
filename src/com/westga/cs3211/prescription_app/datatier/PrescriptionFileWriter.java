@@ -3,7 +3,7 @@ package com.westga.cs3211.prescription_app.datatier;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-
+import java.util.List;
 
 import com.westga.cs3211.prescription_app.model.Prescription;
 import com.westga.cs3211.prescription_app.resources.ExceptionMessages;
@@ -55,5 +55,46 @@ public class PrescriptionFileWriter {
 			
 		}
 	}
-
+	
+	/**
+	 * Rewrites the csv storage file with the specified list of prescriptions
+	 * 
+	 * @precondition filePath != null && filePath.isEmpty == false && prescriptions != null
+	 * @postcondition all prescriptions in list written to csv file
+	 * 
+	 * @param filePath the filePath for the storage CSV
+	 * @param prescriptions the list of prescriptions to be written to the file
+	 */
+	public static void rewriteCSVFile(String filePath, List<Prescription> prescriptions) {
+		if (filePath == null || filePath.isEmpty()) {
+			throw new IllegalArgumentException(ExceptionMessages.NULL_FILE);
+		}
+		if (prescriptions == null) {
+			throw new IllegalArgumentException(ExceptionMessages.NULL_PRESCRIPTION);
+		}
+		
+		try (FileWriter writer = new FileWriter(new File(filePath), false)) {
+			String content = "";
+			writer.write(content);
+			
+			for (Prescription prescription: prescriptions) {
+				content += prescription.getName() + StaticFields.DELIMITER;
+				content += prescription.getAvoidDriving() + StaticFields.DELIMITER;
+				content += prescription.getWithoutAlcohol() + StaticFields.DELIMITER;
+				content += prescription.getWithFood() + StaticFields.DELIMITER;
+				content += prescription.getRenewFrequency() + StaticFields.DELIMITER;
+				content += prescription.getDosageCount() + StaticFields.DELIMITER;
+				content += prescription.getRefillDosageCount() + StaticFields.DELIMITER;
+				content += prescription.getInstructions() + StaticFields.DELIMITER;
+				content += System.lineSeparator();
+			}
+		
+			writer.write(content);
+			
+		} catch (IOException e) {
+			System.err.println(e.getMessage());
+			
+		}
+	}
+	
 }

@@ -39,7 +39,59 @@ public class Medication {
 	}
 
 
-	
+	/**
+	 * Sets the name
+	 * 
+	 * @precondition name != null && name.isEmpty == false
+	 * @postcondition this.getName() == name
+	 * 
+	 * @param name the name is to be set to
+	 */
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	/**
+	 * Sets the name
+	 * 
+	 * @precondition none
+	 * @postcondition this.getAvoidDriving() == avoidDriving
+	 * 
+	 * @param avoidDriving true if driving should be avoided while taking medication
+	 */
+	public void setAvoidDriving(boolean avoidDriving) {
+		this.avoidDriving = avoidDriving;
+	}
+
+
+	/**
+	 * Sets the name
+	 * 
+	 * @precondition none
+	 * @postcondition this.getWithoutAlcohol() == withoutAlcohol
+	 * 
+	 * @param withoutAlcohol true if the medication shouldn't be taken with  Alcohol else false
+	 */
+	public void setWithoutAlcohol(boolean withoutAlcohol) {
+		this.withoutAlcohol = withoutAlcohol;
+	}
+
+
+	/**
+	 * Sets whether medication should be taken with food
+	 * 
+	 * @precondition none
+	 * @postcondition this.getWithFood() == withfood
+	 * 
+	 * @param withFood the value to set withFood too
+	 */
+	public void setWithFood(boolean withFood) {
+		this.withFood = withFood;
+	}
+
+
+
 	/**
 	 * Returns the name of the Medication
 	 * 

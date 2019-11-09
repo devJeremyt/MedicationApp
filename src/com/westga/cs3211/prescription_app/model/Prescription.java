@@ -66,6 +66,38 @@ public class Prescription extends Medication {
 		
 		return this.dosageCount--;
 	}
+	
+	/**
+	 * Updates the values of the prescription to to the ones past in
+	 * 
+	 * @preconditions name cannot be null && renewFrequency >= 0 && dosageCount >= 0 && refillDosageCount > 0
+	 * @postconditions a new prescription is created
+	 * 
+	 * @param renewFrequency		How often a user must go to doctor to get prescription renewed
+	 * @param dosageCount			The current count of doses
+	 * @param refillDosageCount		The number of doses provided with a refill
+	 * @param instructions			The instructions on how to take the prescription
+	 */
+	public void update(int renewFrequency, int dosageCount, int refillDosageCount, String instructions) {
+	
+	
+		if (renewFrequency < 0) {
+			throw new IllegalArgumentException(ExceptionMessages.RENEW_LESS_THAN_ZERO);
+		}
+		if (dosageCount < 0) {
+			throw new IllegalArgumentException(ExceptionMessages.DOSAGE_COUNT_LESS_THAN_ZERO);
+		}
+		if (refillDosageCount <= 0) {
+			throw new IllegalArgumentException(ExceptionMessages.REFILL_LESS_THAN_ZERO);
+		}
+
+		this.renewFrequency = renewFrequency;
+		this.dosageCount = dosageCount;
+		this.refillDosageCount = refillDosageCount;
+		this.active = true;
+		this.instructions = instructions;
+		
+	}
 
 	/**
 	 * Returns the Renew Frequency
@@ -171,6 +203,8 @@ public class Prescription extends Medication {
 	public String toString() {
 		return this.getName();
 	}
+
+
 
 
 	

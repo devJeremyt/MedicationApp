@@ -50,7 +50,24 @@ public class PrescriptionAppViewModel {
 	}
 
 	/**
-	 * Adds the specified prescription to the list of prescriptions
+	 * Updates the specified prescription to the list of prescriptions
+	 * 
+	 * @precondition none
+	 * @postcondition the specified prescription is added to the list of prescriptions
+	 * 
+	 * @param prescription the prescription to be added
+	 * @param renewFrequency the frequency to renew
+	 * @param dosageCount the count of current doses
+	 * @param refillDosageCount the number of doses that come in a refill
+	 * @param instructions describes how to take the prescription
+	 */
+	public void updatePrescription(Prescription prescription, int renewFrequency, int dosageCount, int refillDosageCount, String instructions) {
+		this.manager.update(prescription, renewFrequency, dosageCount, refillDosageCount, instructions);
+		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.manager.getPrescriptions()));
+	}
+
+	/**
+	 * Updates the specified prescription
 	 * 
 	 * @precondition none
 	 * @postcondition the specified prescription is added to the list of prescriptions
@@ -59,9 +76,9 @@ public class PrescriptionAppViewModel {
 	 */
 	public void addPrescription(Prescription prescription) {
 		this.manager.add(prescription);
-		this.prescriptionListProperty.add(prescription);
+		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.manager.getPrescriptions()));
 	}
-
+	
 	/**
 	 * Returns the Prescription List Property
 	 * 

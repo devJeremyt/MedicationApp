@@ -14,6 +14,9 @@ import javafx.scene.control.TextField;
 /**
  * The UpdateMed Class. This is the code behind for the UpdateMed FXML
  * 
+ * @author Jeremy Trimble
+ * @version 11/8/2019
+ * 
  */
 public class UpdateMed {
 
@@ -82,6 +85,7 @@ public class UpdateMed {
     private Button cancelBtn;
 
     private PrescriptionAppViewModel viewmodel;
+    private Prescription prescriptionToUpdate;
     
     
     
@@ -95,6 +99,13 @@ public class UpdateMed {
      * @param event not used
      */
     public void updatePrescription(ActionEvent event) {
+    	
+    	int renewFrequency = Integer.parseInt(this.refillsPerRenew.getText());
+    	int dosageCount = Integer.parseInt(this.dosage.getText());
+    	int refillDosageCount = Integer.parseInt(this.dosesPerRefill.getText());
+    	String instructions = this.instructions.getText();
+
+    	this.viewmodel.updatePrescription(this.prescriptionToUpdate, renewFrequency, dosageCount, refillDosageCount, instructions);
 
     	this.updateBtn.getScene().getWindow().hide();
     }
@@ -118,12 +129,12 @@ public class UpdateMed {
      * @precondition none
      * @postcondition none
      * 
-     * @param viewmodel the viewmodel from the parent page
      * @param prescription the prescription that is being altered
      * 
      */
 	public void bindViews(PrescriptionAppViewModel viewmodel, Prescription prescription) {
 		this.viewmodel = viewmodel;
+		this.prescriptionToUpdate = prescription;
 		
 		this.name.setText(prescription.getName());
 		this.avoidDrivingCheck.selectedProperty().set(prescription.getAvoidDriving());

@@ -46,9 +46,25 @@ public class PrescriptionManager {
 	public boolean add(Prescription prescription) {
 		if (this.prescriptions.add(prescription)) {
 			PrescriptionFileWriter.addPrescriptionToCSV(StaticFields.CURRENT_PRESCRIPTION_FILE, prescription);
+			return true;
 		} 
-		
 		return false;
+	}
+	
+	/**
+	 * Updates a prescription
+	 * 
+	 * @param prescription the prescription being amended
+	 * @param renewFrequency the frequency to renew
+	 * @param dosageCount the count of current doses
+	 * @param refillDosageCount the number of doses that come in a refill
+	 * @param instructions describes how to take the prescription
+	 * 
+	 */
+	public void update(Prescription prescription, int renewFrequency, int dosageCount, int refillDosageCount, String instructions) {
+		prescription.update(renewFrequency, dosageCount, refillDosageCount, instructions);
+		
+		PrescriptionFileWriter.rewriteCSVFile(StaticFields.CURRENT_PRESCRIPTION_FILE, this.prescriptions);
 	}
 
 	/**
