@@ -18,7 +18,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="viewDetailsButton" layoutX="152.0" layoutY="556.0" mnemonicParsing="false" text="View Details">
+      <Button fx:id="viewDetailsButton" layoutX="152.0" layoutY="556.0" mnemonicParsing="false" onAction="#openViewDetailsDialog" text="View Details">
          <font>
             <Font size="14.0" />
          </font>

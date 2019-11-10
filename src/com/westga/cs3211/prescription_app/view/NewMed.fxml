@@ -16,7 +16,7 @@
    <children>
       <Pane prefHeight="200.0" prefWidth="392.0">
          <children>
-            <Label layoutX="167.0" layoutY="22.0" text="Name">
+            <Label layoutX="167.0" layoutY="21.0" text="Name">
                <font>
                   <Font size="14.0" />
                </font>
@@ -40,8 +40,8 @@
                </font>
             </Label>
             <TextField fx:id="dosesPerRefill" layoutX="214.0" layoutY="121.0" />
-            <CheckBox fx:id="avoidDrivingCheck" layoutX="22.0" layoutY="168.0" mnemonicParsing="false" text="Don't take while driving" />
             <CheckBox fx:id="withoutAlcoholCheck" layoutX="22.0" layoutY="151.0" mnemonicParsing="false" text="Don't take with Alcohol" />
+            <CheckBox fx:id="avoidDrivingCheck" layoutX="22.0" layoutY="168.0" mnemonicParsing="false" text="Don't take while driving" />
             <CheckBox fx:id="withFoodCheck" layoutX="214.0" layoutY="159.0" mnemonicParsing="false" text="Take with Food" />
          </children>
       </Pane>

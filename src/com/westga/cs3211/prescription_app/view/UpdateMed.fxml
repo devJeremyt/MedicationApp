@@ -40,8 +40,8 @@
                </font>
             </Label>
             <TextField fx:id="dosesPerRefill" layoutX="214.0" layoutY="121.0" />
-            <CheckBox fx:id="avoidDrivingCheck" disable="true" layoutX="22.0" layoutY="168.0" mnemonicParsing="false" text="Don't take while driving" />
             <CheckBox fx:id="withoutAlcoholCheck" disable="true" layoutX="22.0" layoutY="151.0" mnemonicParsing="false" text="Don't take with Alcohol" />
+            <CheckBox fx:id="avoidDrivingCheck" disable="true" layoutX="22.0" layoutY="168.0" mnemonicParsing="false" text="Don't take while driving" />
             <CheckBox fx:id="withFoodCheck" disable="true" layoutX="214.0" layoutY="159.0" mnemonicParsing="false" text="Take with Food" />
          </children>
       </Pane>

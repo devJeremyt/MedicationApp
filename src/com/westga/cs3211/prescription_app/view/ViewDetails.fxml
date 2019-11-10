@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="doseCountLabel" minHeight="600.0" minWidth="400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westga.cs3211.prescription_app.view.ViewDetails">
+   <children>
+      <Separator layoutX="1.0" layoutY="139.0" prefHeight="3.0" prefWidth="400.0" />
+      <Separator layoutX="1.0" layoutY="283.0" prefHeight="3.0" prefWidth="400.0" />
+      <Label layoutX="165.0" layoutY="151.0" text="Instructions">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="instructionsTxtArea" layoutX="43.0" layoutY="179.0" prefHeight="89.0" prefWidth="315.0" />
+      <Button fx:id="viewRecordBtn" cancelButton="true" layoutX="105.0" layoutY="548.0" mnemonicParsing="false" onAction="#viewRecord" text="View Record">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="backBtn" cancelButton="true" layoutX="242.0" layoutY="548.0" mnemonicParsing="false" onAction="#back" text="Back">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Label fx:id="prescriptionNameLbl" layoutX="144.0" layoutY="23.0" text="Prescription Name">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <ListView fx:id="recordsListView" layoutX="27.0" layoutY="319.0" prefHeight="217.0" prefWidth="350.0" />
+      <Label layoutX="43.0" layoutY="52.0" text="Current # of doses:" />
+      <Label layoutX="64.0" layoutY="82.0" text="Take with food:" />
+      <Label layoutX="200.0" layoutY="82.0" text="Avoid driving while taking:" />
+      <Label layoutX="216.0" layoutY="52.0" text="Don't take with alcohol:" />
+      <Label layoutX="91.0" layoutY="109.0" text="Refills left: " />
+      <Label fx:id="doseCountLbl" layoutX="151.0" layoutY="52.0" text="#" />
+      <Label fx:id="refillCountLbl" layoutX="151.0" layoutY="109.0" text="#" />
+      <Label fx:id="withFoodLbl" layoutX="151.0" layoutY="82.0" text="#" />
+      <Label fx:id="withoutAlcoholLbl" layoutX="348.0" layoutY="53.0" text="#" />
+      <Label fx:id="avoidDrivingLbl" layoutX="348.0" layoutY="82.0" text="#" />
+      <Label layoutX="175.0" layoutY="290.0" text="Records">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

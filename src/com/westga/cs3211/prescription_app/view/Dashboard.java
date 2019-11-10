@@ -130,5 +130,33 @@ public class Dashboard {
 		
 	}
 	
+	/**
+	 * Opens the View Details Modal Dialog
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 */
+	public void openViewDetailsDialog() {
+		try {
+			Stage viewDetailsModal = new Stage();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("ViewDetails.fxml"));
+			loader.load();
+			Pane pane = loader.getRoot();
+			Scene scene = new Scene(pane);
+			viewDetailsModal.setScene(scene);
+			viewDetailsModal.initOwner(this.updateButton.getScene().getWindow());
+			viewDetailsModal.initModality(Modality.APPLICATION_MODAL);
+			ViewDetails details = loader.getController();
+			details.bind(this.prescriptionListView.getSelectionModel().getSelectedItem());
+			viewDetailsModal.showAndWait();
+
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+		
+	}
+	
+	
 
 }
