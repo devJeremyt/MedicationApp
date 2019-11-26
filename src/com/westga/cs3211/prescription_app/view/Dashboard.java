@@ -13,61 +13,61 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * The code behind for the Dashboard fxml view
+ * The code behind for the Dashboard fxml view.
  * 
  * @author Jeremy Trimble
  * @version 11/4/2019
  *
  */
 public class Dashboard {
-	
-    @FXML
-    private ListView<Prescription> prescriptionListView;
 
-    @FXML
-    private Button addButton;
+	@FXML
+	private ListView<Prescription> prescriptionListView;
 
-    @FXML
-    private Button updateButton;
+	@FXML
+	private Button addButton;
 
-    @FXML
-    private Button viewDetailsButton;
-    
-    private PrescriptionAppViewModel viewmodel;
-    
-    /**
-     * Creates a new code behind for the Dashboard
-     * 
-     * @precondition none
-     * @postcondition new code behind object exist
-     * 
-     */
-    public Dashboard() {
-    	
-    }
-    
-    @FXML
-    private void initialize() {
-    	this.viewmodel = new PrescriptionAppViewModel();
-    	this.updateButton.disableProperty().set(true);
-    	this.viewDetailsButton.disableProperty().set(true);
-    	this.setupBinding();
-    	this.setupListeners();
+	@FXML
+	private Button updateButton;
 
+	@FXML
+	private Button viewDetailsButton;
 
-    }
+	private PrescriptionAppViewModel viewmodel;
+
+	/**
+	 * Creates a new code behind for the Dashboard
+	 * 
+	 * @precondition none
+	 * @postcondition new code behind object exist
+	 * 
+	 */
+	public Dashboard() {
+
+	}
+
+	@FXML
+	private void initialize() {
+		this.viewmodel = new PrescriptionAppViewModel();
+		this.updateButton.disableProperty().set(true);
+		this.viewDetailsButton.disableProperty().set(true);
+		this.setupBinding();
+		this.setupListeners();
+
+	}
 
 	private void setupListeners() {
-		this.prescriptionListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-			if (newValue != null) {
-				this.updateButton.disableProperty().set(false);
-				this.viewDetailsButton.disableProperty().set(false);
-			} else {
-				this.updateButton.disableProperty().set(true);
-				this.viewDetailsButton.disableProperty().set(true);
-			}
-		});
-		
+		this.prescriptionListView.getSelectionModel().selectedItemProperty()
+				.addListener((observable, oldValue, newValue) -> {
+					if (newValue != null) {
+						this.updateButton.disableProperty().set(false);
+						this.viewDetailsButton.disableProperty().set(false);
+					} else {
+						this.updateButton.disableProperty().set(true);
+						this.viewDetailsButton.disableProperty().set(true);
+					}
+				});
+
 	}
 
 	private void setupBinding() {
@@ -75,7 +75,7 @@ public class Dashboard {
 //		this.updateButton.disableProperty().bind(this.viewmodel.emptyPrescriptionList().or(this.prescriptionListView.getSelectionModel().selectedItemProperty().isNull()));
 //		this.viewDetailsButton.disableProperty().bind(this.viewmodel.emptyPrescriptionList().or(this.prescriptionListView.getSelectionModel().selectedItemProperty().isNull()));
 	}
-	
+
 	/**
 	 * Opens the NewMed Modal Dialog
 	 * 
@@ -100,9 +100,9 @@ public class Dashboard {
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-		
+
 	}
-	
+
 	/**
 	 * Opens the NewMed Modal Dialog
 	 * 
@@ -127,9 +127,9 @@ public class Dashboard {
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-		
+
 	}
-	
+
 	/**
 	 * Opens the View Details Modal Dialog
 	 * 
@@ -154,9 +154,7 @@ public class Dashboard {
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-		
+
 	}
-	
-	
 
 }

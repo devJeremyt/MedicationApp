@@ -1,5 +1,5 @@
 package com.westga.cs3211.prescription_app;
-	
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 
 /**
  * The main class of the application
+ * 
  * @author Jeremy Trimble
  * @version 10/29/2019
  *
@@ -25,7 +26,7 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * The main method that is the entry point for the application
 	 * 
