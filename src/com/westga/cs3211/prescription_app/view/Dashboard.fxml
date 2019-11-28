@@ -18,6 +18,11 @@
             <Font size="14.0" />
          </font>
       </Button>
+      <Button fx:id="removeButton" layoutX="150.0" layoutY="21.0" mnemonicParsing="false" onAction="#removeMedication" text="Remove">
+         <font>
+            <Font size="14.0" />
+         </font>
+         </Button>
       <Button fx:id="viewDetailsButton" layoutX="152.0" layoutY="556.0" mnemonicParsing="false" onAction="#openViewDetailsDialog" text="View Details">
          <font>
             <Font size="14.0" />

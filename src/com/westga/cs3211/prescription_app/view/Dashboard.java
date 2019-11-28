@@ -26,6 +26,9 @@ public class Dashboard {
 
 	@FXML
 	private Button addButton;
+	
+	@FXML
+	private Button removeButton;
 
 	@FXML
 	private Button updateButton;
@@ -62,9 +65,11 @@ public class Dashboard {
 					if (newValue != null) {
 						this.updateButton.disableProperty().set(false);
 						this.viewDetailsButton.disableProperty().set(false);
+						this.removeButton.disableProperty().set(false);
 					} else {
 						this.updateButton.disableProperty().set(true);
 						this.viewDetailsButton.disableProperty().set(true);
+						this.removeButton.disableProperty().set(false);
 					}
 				});
 
@@ -127,7 +132,7 @@ public class Dashboard {
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-
+		
 	}
 
 	/**
@@ -156,5 +161,10 @@ public class Dashboard {
 		}
 
 	}
+	
+	@FXML
+	private void removeMedication() {
+		this.viewmodel.removePrescription(this.prescriptionListView.getSelectionModel().getSelectedItem());
+			}
 
 }

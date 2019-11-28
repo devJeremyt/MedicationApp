@@ -91,5 +91,10 @@ public class PrescriptionAppViewModel {
 		return this.prescriptionListProperty;
 	}
 	
+	public void removePrescription(Prescription prescription) {
+		this.manager.remove(prescription);
+		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.manager.getPrescriptions()));
+	}
+	
 	
 }
