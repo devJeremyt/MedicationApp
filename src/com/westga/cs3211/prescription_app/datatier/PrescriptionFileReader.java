@@ -18,14 +18,13 @@ import com.westga.cs3211.prescription_app.resources.StaticFields;
  *
  */
 public class PrescriptionFileReader {
-	
+
 	/**
 	 * Returns a new Prescription List created from the file specified
 	 * 
 	 * @precondition filePath != null
 	 * 
-	 * @param filePath
-	 *            the file path of the photo album
+	 * @param filePath the file path of the photo album
 	 * 
 	 * @return a list of Prescriptions
 	 */
@@ -49,8 +48,9 @@ public class PrescriptionFileReader {
 				if (fields.length == 8) {
 					instructions = fields[7];
 				}
-				
-				Prescription prescription = new Prescription(name, avoidDriving, withoutAlcohol, withFood, renewFrequency, dosageCount, refillDosageCount, instructions);
+
+				Prescription prescription = new Prescription(name, avoidDriving, withoutAlcohol, withFood,
+						renewFrequency, dosageCount, refillDosageCount, instructions);
 				prescriptions.add(prescription);
 			}
 		} catch (FileNotFoundException fnfe) {

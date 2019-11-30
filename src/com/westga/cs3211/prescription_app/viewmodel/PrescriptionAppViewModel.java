@@ -91,6 +91,15 @@ public class PrescriptionAppViewModel {
 		return this.prescriptionListProperty;
 	}
 	
+	
+	/**
+	 * Removes the selected prescription
+	 * 
+	 * @precondition none
+	 * @postcondition prescription is removed from list and file
+	 * @param prescription the prescription to be removed
+	 */
+	
 	public void removePrescription(Prescription prescription) {
 		this.manager.remove(prescription);
 		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.manager.getPrescriptions()));

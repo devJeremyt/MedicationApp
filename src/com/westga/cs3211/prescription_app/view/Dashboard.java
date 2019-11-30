@@ -54,6 +54,7 @@ public class Dashboard {
 		this.viewmodel = new PrescriptionAppViewModel();
 		this.updateButton.disableProperty().set(true);
 		this.viewDetailsButton.disableProperty().set(true);
+		this.removeButton.disableProperty().set(true);
 		this.setupBinding();
 		this.setupListeners();
 

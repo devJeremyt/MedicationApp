@@ -1,5 +1,7 @@
 package com.westga.cs3211.prescription_app.model;
 
+import java.io.File;
+
 import com.westga.cs3211.prescription_app.resources.ExceptionMessages;
 
 /**
@@ -15,6 +17,7 @@ public class Prescription extends Medication {
 	private int refillDosageCount;
 	private boolean active;
 	private String instructions;
+	private File record;
 	
 	/**
 	 * Creates a new Prescription
@@ -49,6 +52,7 @@ public class Prescription extends Medication {
 		this.refillDosageCount = refillDosageCount;
 		this.active = true;
 		this.instructions = instructions;
+		this.record = new File(this.getName() + " record");
 	}
 	
 	/**
@@ -204,10 +208,6 @@ public class Prescription extends Medication {
 		return this.getName();
 	}
 
-
-
-
-	
 	
 }
 
