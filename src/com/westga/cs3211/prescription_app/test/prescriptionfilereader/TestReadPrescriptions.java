@@ -1,20 +1,22 @@
 package com.westga.cs3211.prescription_app.test.prescriptionfilereader;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import com.westga.cs3211.prescription_app.datatier.PrescriptionFileReader;
+import com.westga.cs3211.prescription_app.datatier.PrescriptionFileIO;
 import com.westga.cs3211.prescription_app.model.Prescription;
 
 class TestReadPrescriptions {
 
 	@Test
 	void testSinglePrescription() {
+		PrescriptionFileIO reader = new PrescriptionFileIO(".\\src\\com\\westga\\cs3211\\prescription_app\\test\\prescriptionfilereader\\testDataSet1.csv");
 		
-		List<Prescription> prescriptions = PrescriptionFileReader.readPrescriptionCSV(".\\src\\com\\westga\\cs3211\\prescription_app\\test\\prescriptionfilereader\\testDataSet1.csv");
+		List<Prescription> prescriptions = reader.readPrescriptionCSV();
 		
 		assertEquals("Asprin", prescriptions.get(0).getName());
 		assertEquals(false, prescriptions.get(0).getAvoidDriving());
@@ -28,8 +30,8 @@ class TestReadPrescriptions {
 	
 	@Test
 	void testMultiplePrescriptions() {
-		
-		List<Prescription> prescriptions = PrescriptionFileReader.readPrescriptionCSV(".\\src\\com\\westga\\cs3211\\prescription_app\\test\\prescriptionfilereader\\testDataSet2.csv");
+		PrescriptionFileIO reader = new PrescriptionFileIO(".\\src\\com\\westga\\cs3211\\prescription_app\\test\\prescriptionfilereader\\testDataSet2.csv");
+		List<Prescription> prescriptions = reader.readPrescriptionCSV();
 		
 		assertEquals(3, prescriptions.size());
 		
@@ -37,8 +39,8 @@ class TestReadPrescriptions {
 	
 	@Test
 	void testBrokenFile() {
-		
-		List<Prescription> prescriptions = PrescriptionFileReader.readPrescriptionCSV(".\\src\\com\\westga\\cs3211\\prescription_app\\test\\prescriptionfilereader\\testDataSet3.csv");
+		PrescriptionFileIO reader = new PrescriptionFileIO(".\\src\\com\\westga\\cs3211\\prescription_app\\test\\prescriptionfilereader\\testDataSet3.csv");
+		List<Prescription> prescriptions = reader.readPrescriptionCSV();
 		
 		assertEquals(true, prescriptions.isEmpty());
 		
@@ -46,17 +48,11 @@ class TestReadPrescriptions {
 	
 	@Test
 	void testNoPrescription() {
-		
-		List<Prescription> prescriptions = PrescriptionFileReader.readPrescriptionCSV(".\\src\\com\\westga\\cs3211\\prescription_app\\test\\prescriptionfilereader\\testDataSet3.csv");
+		PrescriptionFileIO reader = new PrescriptionFileIO(".\\src\\com\\westga\\cs3211\\prescription_app\\test\\prescriptionfilereader\\testDataSet3.csv");
+		List<Prescription> prescriptions = reader.readPrescriptionCSV();
 		
 		assertEquals(true, prescriptions.isEmpty());
 		
 	}
 	
-	@Test
-	void testFilePathNull() {
-		
-		assertThrows(IllegalArgumentException.class, ()->PrescriptionFileReader.readPrescriptionCSV(null));
-	}
-
 }

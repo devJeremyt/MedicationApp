@@ -1,11 +1,8 @@
 package com.westga.cs3211.prescription_app.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import com.westga.cs3211.prescription_app.datatier.PrescriptionFileReader;
-import com.westga.cs3211.prescription_app.datatier.PrescriptionFileWriter;
-import com.westga.cs3211.prescription_app.resources.ExceptionMessages;
+import com.westga.cs3211.prescription_app.datatier.PrescriptionFileIO;
 import com.westga.cs3211.prescription_app.resources.StaticFields;
 
 /**
@@ -18,6 +15,7 @@ import com.westga.cs3211.prescription_app.resources.StaticFields;
 public class PrescriptionManager {
 	
 	private List<Prescription> prescriptions;
+	private PrescriptionFileIO fileIO;
 	
 	/**
 	 * Creates a new PrescriptionManager
@@ -27,13 +25,8 @@ public class PrescriptionManager {
 	 * 
 	 */
 	public PrescriptionManager() {
-		try {
-			this.prescriptions = PrescriptionFileReader.readPrescriptionCSV(StaticFields.CURRENT_PRESCRIPTION_FILE);
-		} catch (Exception e) {
-			System.err.println(ExceptionMessages.ERROR_CREATING_MANAGER);
-			
-			this.prescriptions = new ArrayList<Prescription>();
-		}
+		this.fileIO = new PrescriptionFileIO(StaticFields.CURRENT_PRESCRIPTION_FILE);
+		this.prescriptions = this.fileIO.readPrescriptionCSV();
 	}
 	
 	/**
@@ -45,7 +38,8 @@ public class PrescriptionManager {
 	 */
 	public boolean add(Prescription prescription) {
 		if (this.prescriptions.add(prescription)) {
-			PrescriptionFileWriter.addPrescriptionToCSV(StaticFields.CURRENT_PRESCRIPTION_FILE, prescription);
+			
+			this.fileIO.addPrescriptionToCSV(prescription);
 			return true;
 		} 
 		return false;
@@ -64,7 +58,7 @@ public class PrescriptionManager {
 	public void update(Prescription prescription, int renewFrequency, int dosageCount, int refillDosageCount, String instructions) {
 		prescription.update(renewFrequency, dosageCount, refillDosageCount, instructions);
 		
-		PrescriptionFileWriter.rewriteCSVFile(StaticFields.CURRENT_PRESCRIPTION_FILE, this.prescriptions);
+		this.fileIO.rewriteCSVFile(this.prescriptions);
 	}
 
 	/**
@@ -93,7 +87,7 @@ public class PrescriptionManager {
 	public void remove(Prescription prescription) {
 		this.prescriptions.remove(prescription);
 		{
-			PrescriptionFileWriter.rewriteCSVFile(StaticFields.CURRENT_PRESCRIPTION_FILE, this.prescriptions);
+			this.fileIO.rewriteCSVFile(this.prescriptions);
 		}
 	}
 	
