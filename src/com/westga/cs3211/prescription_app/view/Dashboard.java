@@ -166,6 +166,6 @@ public class Dashboard {
 	@FXML
 	private void removeMedication() {
 		this.viewmodel.removePrescription(this.prescriptionListView.getSelectionModel().getSelectedItem());
-			}
+	}
 
 }

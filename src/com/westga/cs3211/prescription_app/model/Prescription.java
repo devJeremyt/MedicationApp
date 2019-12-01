@@ -208,6 +208,18 @@ public class Prescription extends Medication {
 		return this.getName();
 	}
 
+	/**
+	 * Returns the record for the prescription
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the file of the records for the prescription
+	 */
+	public File getRecord() {
+		return this.record;
+	}
+
 	
 }
 

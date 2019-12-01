@@ -92,9 +92,6 @@ public class PrescriptionManager {
 	
 	public void remove(Prescription prescription) {
 		this.prescriptions.remove(prescription);
-		{
-			PrescriptionFileWriter.rewriteCSVFile(StaticFields.CURRENT_PRESCRIPTION_FILE, this.prescriptions);
-		}
+		PrescriptionFileWriter.rewriteCSVFile(StaticFields.CURRENT_PRESCRIPTION_FILE, this.prescriptions);
 	}
-	
 }
