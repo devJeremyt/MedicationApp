@@ -1,40 +1,56 @@
 package com.westga.cs3211.prescription_app.model;
 
 import java.util.Date;
+import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
-
 public class Reminder {
-	
+
 	private Prescription prescription;
-	private Timer reminderTimer;
-	private ReminderTimerTask reminderTask;
-	private static boolean reminderFiring;
-	private static int remindCount;
-	
+	private static Timer reminderTimer;
+	private static ReminderTimerTask reminderTask;
+	public static boolean reminderFiring;
+	public static int remindCount;
+	private Date nextScheduledTime;
+	private Queue<Date> reminderDates;
+
 	private class ReminderTimerTask extends TimerTask {
-		
+
 		@Override
 		public void run() {
 			Reminder.reminderFiring = true;
-			Reminder.remindCount++;
+			remindCount++;
+			if (remindCount <= 6) {
+				reminderTimer.schedule(task, time);
+			}
 		}
 	}
-	
-	public Reminder(Prescription prescription, Date reminderDate) {
+
+	public Reminder(Prescription prescription, Queue<Date> reminderDates) {
+		if (reminderDates.isEmpty()) {
+			throw new IllegalArgumentException("No valid dates passed in.");
+		}
+		this.reminderDates = reminderDates;
 		this.prescription = prescription;
-		this.reminderTimer = new Timer();
+		reminderTimer = new Timer();
 		this.reminderTask = new ReminderTimerTask();
-		this.reminderTimer.scheduleAtFixedRate(reminderTask, reminderDate, 600000);
+		reminderTimer.schedule(this.reminderTask, this.reminderDates.remove());
 		reminderFiring = false;
-		remindCount = 0;
 	}
-	
+
 	public void disableReminder() {
-		this.reminderTimer.cancel();
-		remindCount = 0;
+		reminderTimer.cancel();
 		reminderFiring = false;
+	}
+
+	public Prescription getPrescription() {
+		return this.prescription;
+	}
+
+	public void setNextReminder() {
+		if (!this.reminderDates.isEmpty()) {
+			reminderTimer.schedule(this.reminderTask, this.reminderDates.remove());
+		}
 	}
 }
