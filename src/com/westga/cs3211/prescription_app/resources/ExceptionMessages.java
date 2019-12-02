@@ -11,6 +11,7 @@ package com.westga.cs3211.prescription_app.resources;
 public class ExceptionMessages {
 	
 	public static final String NAME_NOT_EMPTY = "Name must not be null or empty.";
+	public static final String DESCRIPTION_NOT_EMPTY = "Description must not be null or empty.";
 	public static final String RENEW_LESS_THAN_ZERO = "Renew Frequency must be 0 or greater.";
 	public static final String DOSAGE_COUNT_LESS_THAN_ZERO = "Dosage Count must be 0 or greater.";
 	public static final String REFILL_LESS_THAN_ZERO = "Refill Dosage count must be greater than 0.";
@@ -18,5 +19,7 @@ public class ExceptionMessages {
 	public static final String NULL_PRESCRIPTION = "Prescription cannot be null";
 	public static final String ERROR_CREATING_MANAGER = "An Error occurred trying to make a manager";
 	public static final String CORRUPT_DATA_FILE = "Data file may be corrupted. Line wasn't able to be read completely. Check for unintentional nextline";
+	public static final String TIME_NOT_NULL = "Time cannot be set to null";
+	public static final String SIDEEFFECT_NOT_NULL = "SideEffect cannot be set to null";
 
 }

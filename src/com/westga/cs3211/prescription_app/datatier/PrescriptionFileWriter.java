@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.westga.cs3211.prescription_app.model.Prescription;
+import com.westga.cs3211.prescription_app.model.SideEffect;
 import com.westga.cs3211.prescription_app.resources.ExceptionMessages;
 import com.westga.cs3211.prescription_app.resources.StaticFields;
 
@@ -96,7 +97,70 @@ public class PrescriptionFileWriter {
 			
 		}
 	}
+	
+	/**
+	 * Adds the specified SideEffect to the csv of SideEffects
+	 * 
+	 * @preconditions file != null && sideEffect != null
+	 * @postconditions file contains the prescription data
+	 * @param file the file the sideEffects are saved to
+	 * @param sideEffect the sideEffect being added
+	 */
+	public static void addSideEffectToCSV(File file, SideEffect sideEffect) {
+		if (file == null) {
+			throw new IllegalArgumentException(ExceptionMessages.NULL_FILE);
+		}
+		if (sideEffect == null) {
+			throw new IllegalArgumentException(ExceptionMessages.SIDEEFFECT_NOT_NULL);
+		}
 		
+		try (FileWriter writer = new FileWriter(file, true)) {
+			String content = "";
+			
+			content += sideEffect.getTime() + StaticFields.DELIMITER;
+			content += sideEffect.getDescription() + StaticFields.DELIMITER;
+			content += System.lineSeparator();
+			
+			writer.append(content);
+			
+		} catch (IOException e) {
+			System.err.println(e.getMessage());
+			
+		}
+	}
 		
+	/**
+	 * Rewrites the CSV of the SideEffects with the SideEffects in the list
+	 * 
+	 * @preconditions file != null && sideEffect != null
+	 * @postconditions file contains the prescription data
+	 * @param file the file the sideEffects are saved to
+	 * @param sideEffects the sideEffects to be written to file
+	 */
+	public static void rewriteSideEffectToCSV(File file, List<SideEffect> sideEffects) {
+		if (file == null) {
+			throw new IllegalArgumentException(ExceptionMessages.NULL_FILE);
+		}
+		if (sideEffects == null) {
+			throw new IllegalArgumentException(ExceptionMessages.SIDEEFFECT_NOT_NULL);
+		}
+		
+		try (FileWriter writer = new FileWriter(file, true)) {
+			String content = "";
+			writer.write(content);
+			
+			for (SideEffect sideEffect : sideEffects) {
+				content += sideEffect.getTime() + StaticFields.DELIMITER;
+				content += sideEffect.getDescription() + StaticFields.DELIMITER;
+				content += System.lineSeparator();
+			}
+		
+			writer.write(content);
+			
+		} catch (IOException e) {
+			System.err.println(e.getMessage());
+			
+		}
+	}	
 	
 }
