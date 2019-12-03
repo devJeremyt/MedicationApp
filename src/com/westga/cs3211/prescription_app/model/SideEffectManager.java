@@ -22,6 +22,7 @@ public class SideEffectManager {
 	private File storageFile;
 	
 	
+	
 	/**
 	 * Creates a new SideEffectManager
 	 * 
@@ -76,6 +77,7 @@ public class SideEffectManager {
 		
 		sideEffect.setDescription(description);
 		sideEffect.setTime(time);
+		PrescriptionFileWriter.rewriteSideEffectToCSV(this.storageFile, this.sideEffects);
 	}
 	
 	/**
@@ -84,16 +86,15 @@ public class SideEffectManager {
 	 * @precondition sideEffect != null
 	 * @postcondition this.sideEffects.size() == this.sideEffects@prev - 1
 	 * 
-	 * @return true if the sideEffect was removed else false
-	 * 
 	 * @param sideEffect the sideEffect being updated
 	 */
-	public boolean remove(SideEffect sideEffect) {
+	public void remove(SideEffect sideEffect) {
 		if (sideEffect == null) {
 			throw new IllegalArgumentException(ExceptionMessages.SIDEEFFECT_NOT_NULL);
 		}
 		
-		return this.sideEffects.remove(sideEffect);
+		this.sideEffects.remove(sideEffect);
+		PrescriptionFileWriter.rewriteSideEffectToCSV(this.storageFile, this.sideEffects);
 	}
 
 	/**

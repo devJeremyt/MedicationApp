@@ -18,12 +18,17 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="removeButton" layoutX="150.0" layoutY="21.0" mnemonicParsing="false" onAction="#removeMedication" text="Remove">
+      <Button fx:id="removeButton" layoutX="165.0" layoutY="21.0" mnemonicParsing="false" onAction="#removeMedication" text="Remove">
          <font>
             <Font size="14.0" />
          </font>
          </Button>
-      <Button fx:id="viewDetailsButton" layoutX="152.0" layoutY="556.0" mnemonicParsing="false" onAction="#openViewDetailsDialog" text="View Details">
+      <Button fx:id="viewDetailsButton" layoutX="48.0" layoutY="559.0" mnemonicParsing="false" onAction="#openViewDetailsDialog" text="View Details">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="viewSideEffectsButton" layoutX="241.0" layoutY="559.0" mnemonicParsing="false" onAction="#openViewSideEffectsDialog" text="View Side Effects">
          <font>
             <Font size="14.0" />
          </font>

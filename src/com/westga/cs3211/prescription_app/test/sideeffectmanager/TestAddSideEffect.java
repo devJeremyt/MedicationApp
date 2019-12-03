@@ -10,7 +10,6 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import com.westga.cs3211.prescription_app.datatier.PrescriptionFileReader;
-import com.westga.cs3211.prescription_app.datatier.PrescriptionFileWriter;
 import com.westga.cs3211.prescription_app.model.SideEffect;
 import com.westga.cs3211.prescription_app.model.SideEffectManager;
 import com.westga.cs3211.prescription_app.resources.StaticFields;
@@ -28,13 +27,13 @@ class TestAddSideEffect {
 		
 		//Test the List<Side Effect>
 		assertEquals("Missing Limb", manager.getSideEffects().get(0).getDescription());
-		assertEquals(time.format(StaticFields.DATETIMEFORMAT), manager.getSideEffects().get(0).getTime());
+		assertEquals(time.format(StaticFields.DATETIMEFORMAT), manager.getSideEffects().get(0).getFormattedDateTime());
 		
 		List<SideEffect> singleSideEffect = PrescriptionFileReader.readSideEffectsCSV(new File(".\\src\\com\\westga\\cs3211\\prescription_app\\test\\sideeffectmanager\\testSideEffects1.csv"));
 		
 		//Test it was added to the csv file
 		assertEquals("Missing Limb", singleSideEffect.get(0).getDescription());
-		assertEquals(time.format(StaticFields.DATETIMEFORMAT), singleSideEffect.get(0).getTime());
+		assertEquals(time.format(StaticFields.DATETIMEFORMAT), singleSideEffect.get(0).getFormattedDateTime());
 		
 		// Rewrites the test file to be blank.
 		try {

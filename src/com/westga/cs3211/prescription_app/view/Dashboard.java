@@ -28,6 +28,9 @@ public class Dashboard {
 	private Button addButton;
 	
 	@FXML
+	private Button addSideEffectButton;
+	
+	@FXML
 	private Button removeButton;
 
 	@FXML
@@ -166,6 +169,33 @@ public class Dashboard {
 	@FXML
 	private void removeMedication() {
 		this.viewmodel.removePrescription(this.prescriptionListView.getSelectionModel().getSelectedItem());
+	}
+	
+	/**
+	 * Opens the ViewSideEffects Modal Dialog
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 */
+	public void openViewSideEffectsDialog() {
+		try {
+			Stage viewSideEffectsModal = new Stage();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("ViewSideEffects.fxml"));
+			loader.load();
+			Pane pane = loader.getRoot();
+			Scene scene = new Scene(pane);
+			viewSideEffectsModal.setScene(scene);
+			viewSideEffectsModal.initOwner(this.addButton.getScene().getWindow());
+			viewSideEffectsModal.initModality(Modality.APPLICATION_MODAL);
+			ViewSideEffects viewEffects = loader.getController();
+			viewEffects.bindViews(this.viewmodel);
+			viewSideEffectsModal.showAndWait();
+
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+
 	}
 
 }

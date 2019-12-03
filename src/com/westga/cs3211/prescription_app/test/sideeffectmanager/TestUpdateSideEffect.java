@@ -24,7 +24,7 @@ class TestUpdateSideEffect {
 		manager.update(sideEffect, "Missing Leg", time);
 		
 		assertEquals("Missing Leg", manager.getSideEffects().get(0).getDescription());
-		assertEquals(time.format(StaticFields.DATETIMEFORMAT), manager.getSideEffects().get(0).getTime());
+		assertEquals(time.format(StaticFields.DATETIMEFORMAT), manager.getSideEffects().get(0).getFormattedDateTime());
 		
 		// Rewrites the test file to be blank.
 		try {
@@ -50,7 +50,7 @@ class TestUpdateSideEffect {
 		manager.update(sideEffect, "Missing Limb", time);
 		
 		assertEquals("Missing Limb", manager.getSideEffects().get(0).getDescription());
-		assertEquals(time.format(StaticFields.DATETIMEFORMAT), manager.getSideEffects().get(0).getTime());
+		assertEquals(time.format(StaticFields.DATETIMEFORMAT), manager.getSideEffects().get(0).getFormattedDateTime());
 		
 		// Rewrites the test file to be blank.
 		try {

@@ -86,16 +86,7 @@ public class NewMed {
     private Button cancelBtn;
     
     private PrescriptionAppViewModel viewmodel;
-    
-    
-    /**
-     * Sets the viewmodel
-     * 
-     * @precondition none
-     * @postcondition none
-     * 
-     */
-    
+      
     
     /**
      * Adds a prescription to the list of Prescriptions

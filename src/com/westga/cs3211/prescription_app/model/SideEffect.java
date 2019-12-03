@@ -1,7 +1,8 @@
 package com.westga.cs3211.prescription_app.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalTime;
 
 import com.westga.cs3211.prescription_app.resources.ExceptionMessages;
 import com.westga.cs3211.prescription_app.resources.StaticFields;
@@ -66,17 +67,42 @@ public class SideEffect {
 	}
 	
 	/**
-	 * Returns the the time of teh SideEffect
+	 * Returns the the time of the SideEffect
 	 * 
 	 * @precondition none
 	 * @postcondition none
 	 * 
 	 * @return the time of the SideEffect
 	 */
-	public String getTime() {
+	public String getFormattedDateTime() {
 		return this.time.format(StaticFields.DATETIMEFORMAT);
 	}
 	
+	/**
+	 * Returns the the time of the SideEffect
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the time of the SideEffect
+	 */
+	public LocalTime getTime() {
+		return this.time.toLocalTime();
+	}
+	
+	/**
+	 * Returns the the date of the SideEffect
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the time of the SideEffect
+	 */
+	public LocalDate getDate() {
+		return this.time.toLocalDate();
+	}
+	
+
 	/**
 	 * Sets the time of the side effect
 	 * 
@@ -90,6 +116,12 @@ public class SideEffect {
 			throw new IllegalArgumentException(ExceptionMessages.TIME_NOT_NULL);
 		}
 		this.time = time;
+	}
+	
+
+	@Override
+	public String toString() {
+		return this.getFormattedDateTime() + " - " + this.getDescription();
 	}
 	
 

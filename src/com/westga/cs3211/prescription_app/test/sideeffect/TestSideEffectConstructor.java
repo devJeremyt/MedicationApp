@@ -14,7 +14,7 @@ class TestSideEffectConstructor {
 	void testSuccessfulConstruction() {
 		SideEffect sideEffect = new SideEffect("Numb body", LocalDateTime.of(2019, 12, 1, 17, 50));
 		
-		assertEquals("12/01/2019 05:50 PM", sideEffect.getTime());
+		assertEquals("12/01/2019 05:50 PM", sideEffect.getFormattedDateTime());
 		assertEquals("Numb body", sideEffect.getDescription());
 	}
 	

@@ -117,7 +117,7 @@ public class PrescriptionFileWriter {
 		try (FileWriter writer = new FileWriter(file, true)) {
 			String content = "";
 			
-			content += sideEffect.getTime() + StaticFields.DELIMITER;
+			content += sideEffect.getFormattedDateTime() + StaticFields.DELIMITER;
 			content += sideEffect.getDescription() + StaticFields.DELIMITER;
 			content += System.lineSeparator();
 			
@@ -145,12 +145,12 @@ public class PrescriptionFileWriter {
 			throw new IllegalArgumentException(ExceptionMessages.SIDEEFFECT_NOT_NULL);
 		}
 		
-		try (FileWriter writer = new FileWriter(file, true)) {
+		try (FileWriter writer = new FileWriter(file, false)) {
 			String content = "";
 			writer.write(content);
 			
 			for (SideEffect sideEffect : sideEffects) {
-				content += sideEffect.getTime() + StaticFields.DELIMITER;
+				content += sideEffect.getFormattedDateTime() + StaticFields.DELIMITER;
 				content += sideEffect.getDescription() + StaticFields.DELIMITER;
 				content += System.lineSeparator();
 			}
