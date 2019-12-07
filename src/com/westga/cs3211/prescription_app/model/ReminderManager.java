@@ -1,5 +1,6 @@
 package com.westga.cs3211.prescription_app.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Calendar.Builder;
@@ -9,51 +10,55 @@ import java.util.TimerTask;
 public class ReminderManager {
 
 	private ArrayList<Reminder> reminders;
-	private ArrayList<Reminder> activeReminders;
+	private ArrayList<Reminder> remindersBeingDisplayed;
 	private Timer monitor;
 
 	public ReminderManager() {
 		this.reminders = new ArrayList<Reminder>();
+		this.remindersBeingDisplayed = new ArrayList<Reminder>();
 		this.monitor = new Timer();
-		this.activeReminders = new ArrayList<Reminder>();
-
-	}
-
-	private void rescheduleReminderForNextWeek(Reminder reminder) {
-		Calendar newDate = this.getDateOfNextWeek(reminder.getDate());
-		Prescription prescription = reminder.getPrescription();
-		Reminder newReminder = new Reminder(prescription, newDate, 0);
-		this.reminders.remove(reminder);
-	}
-
-	private Calendar getDateOfNextWeek(Calendar date) {
-		date.add(date.get(Calendar.DATE), 7);
-		return date;
+		this.monitor.scheduleAtFixedRate(new ReminderTimerTask(), 0, 1000);
 	}
 
 	public boolean add(Reminder reminder) {
-		return this.add(reminder);
+		return this.reminders.add(reminder);
 	}
 	
-	private class MonitorTimerTask extends TimerTask {
-		
-		//TODO: Account for medication not taken, also don't reschedule reminders if they are 10 minute reminders.
+	/**
+	 * The Class ReminderTimerTask.
+	 */
+	private class ReminderTimerTask extends TimerTask {
+
+		/**
+		 * Run.
+		 */
 		@Override
 		public void run() {
 			for (Reminder reminder : ReminderManager.this.reminders) {
-				if (reminder.hasFired()) {
-					ReminderManager.this.activeReminders.add(reminder);
-					ReminderManager.this.rescheduleReminderForNextWeek(reminder);
-					
-					Calendar newTime = reminder.getDate();
-					newTime.add(newTime.MINUTE, 10);
-					
-					ReminderManager.this.add(new Reminder(reminder.getPrescription(), newTime, reminder.getTimesReminded() + 1));
+				if (reminder.hasBeenTaken()) {
+					reminder.reschedulePrescription();
+					ReminderManager.this.remindersBeingDisplayed.remove(reminder);
 				}
 			}
 			
+			for (Reminder reminder : ReminderManager.this.reminders) {
+				if (this.reminderTimeIsInPast(reminder)) {
+					reminder.increaseTimesReminded();
+					if (!ReminderManager.this.remindersBeingDisplayed.contains(reminder)) {
+						ReminderManager.this.remindersBeingDisplayed.add(reminder);
+					}
+					if (reminder.getTimesReminded() > 6) {
+						//TODO Record medication is not taken.
+						reminder.reschedulePrescription();
+						ReminderManager.this.remindersBeingDisplayed.remove(reminder);
+					}
+				}
+			}
 		}
 		
+		private boolean reminderTimeIsInPast(Reminder reminder) {
+			return reminder.getDateTime().plusMinutes(reminder.getTimesReminded() * 10).isBefore(LocalDateTime.now());
+		}
 	}
 
 }

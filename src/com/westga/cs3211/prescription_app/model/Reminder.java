@@ -1,5 +1,6 @@
 package com.westga.cs3211.prescription_app.model;
 
+import java.time.LocalDateTime;
 import java.util.Calendar;
 import java.util.Calendar.Builder;
 import java.util.Date;
@@ -15,48 +16,24 @@ import java.util.TimerTask;
 public class Reminder {
 
 	private Prescription prescription;
-	private Timer reminderTimer;
-	private ReminderTimerTask reminderTask;
-	private Calendar reminderDate;
-	private boolean reminderFired;
+	private LocalDateTime reminderDate;
 	private int timesReminded;
+	private boolean prescriptionTaken;
+	private int daysBetween;
 
-	/**
-	 * The Class ReminderTimerTask.
-	 */
-	private class ReminderTimerTask extends TimerTask {
-
-		/**
-		 * Run.
-		 */
-		@Override
-		public void run() {
-			Reminder.this.reminderFired = true;
-			Reminder.this.disableReminder();
-		}
-	}
 
 	/**
 	 * Instantiates a new reminder.
 	 *
 	 * @param prescription the prescription
 	 * @param reminderDate the reminder date
+	 * @param daysBetween days between taking the medication
 	 */
-	public Reminder(Prescription prescription, Calendar reminderDate, int timesReminded) {
+	public Reminder(Prescription prescription, LocalDateTime reminderDate, int daysBetween) {
 		this.reminderDate = reminderDate;
+		this.daysBetween = daysBetween;
 		this.prescription = prescription;
-		this.reminderTimer = new Timer();
-		this.reminderTask = new ReminderTimerTask();
-		this.reminderTimer.schedule(this.reminderTask, this.reminderDate.getTime());
-		this.reminderFired = false;
-		this.timesReminded = timesReminded;
-	}
-
-	/**
-	 * Disable reminder.
-	 */
-	public void disableReminder() {
-		this.reminderTimer.cancel();
+		this.prescriptionTaken = false;
 	}
 
 	/**
@@ -67,27 +44,34 @@ public class Reminder {
 	public Prescription getPrescription() {
 		return this.prescription;
 	}
-
-	/**
-	 * Reminder has fired.
-	 *
-	 * @return true, if successful
-	 */
-	public boolean hasFired() {
-		return this.reminderFired;
-	}
-
-	/**
-	 * Gets the date.
-	 *
-	 * @return the date
-	 */
-	public Calendar getDate() {
+	
+	public LocalDateTime getDateTime() {
 		return this.reminderDate;
 	}
 	
+	public void setDateTime(LocalDateTime time) {
+		this.reminderDate = time;;
+	}
+	
+	public void increaseTimesReminded() {
+		this.timesReminded++;
+	}
 	
 	public int getTimesReminded() {
 		return this.timesReminded;
+	}
+	
+	public void takePrescription() {
+		this.prescriptionTaken = true;
+		this.timesReminded = 0;
+	}
+	
+	public void reschedulePrescription() {
+		this.setDateTime(this.reminderDate.plusDays(this.daysBetween));
+		this.prescriptionTaken = false;
+	}
+	
+	public boolean hasBeenTaken() {
+		return this.prescriptionTaken;
 	}
 }
