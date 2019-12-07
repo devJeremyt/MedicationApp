@@ -207,6 +207,12 @@ public class PrescriptionAppViewModel {
 		this.sideEffectsManager.update(sideEffect, description, dateTime);
 		this.sideEffectsListProperty.set(FXCollections.observableArrayList(this.sideEffectsManager.getSideEffects()));
 	}
+
+
+	public void confirmMedTaken(Reminder selectedItem) {
+		this.reminderManager.confirmMedicationTaken(selectedItem);
+		
+	}
 	
 	
 }

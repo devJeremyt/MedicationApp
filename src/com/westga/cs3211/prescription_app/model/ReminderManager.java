@@ -28,6 +28,15 @@ public class ReminderManager {
 		return this.remindersBeingDisplayed;
 	}
 	
+	public void confirmMedicationTaken(Reminder reminderToConfirm) {
+		for (Reminder reminder : this.remindersBeingDisplayed) {
+			if (reminderToConfirm == reminder) {
+				//TODO Confirm Medication is Taken in Records
+				reminder.takePrescription();
+			}
+		}
+	}
+	
 	/**
 	 * The Class ReminderTimerTask.
 	 */
