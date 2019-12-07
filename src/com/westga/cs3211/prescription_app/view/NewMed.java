@@ -88,9 +88,6 @@ public class NewMed {
     public void addPrescription(ActionEvent event) {
     	try {
     		Prescription prescription = this.createPrescription();
-    		//TODO
-    		// The createReminder below is to be change to return a Reminder object once reminder class
-    		// is written. A handle for the prescription the reminder is for is above.
     		this.createReminder(prescription);
         	this.viewmodel.addPrescription(prescription);   
 
