@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 
 import com.westga.cs3211.prescription_app.model.Prescription;
 import com.westga.cs3211.prescription_app.model.PrescriptionManager;
+import com.westga.cs3211.prescription_app.model.Reminder;
+import com.westga.cs3211.prescription_app.model.ReminderManager;
 import com.westga.cs3211.prescription_app.model.SideEffect;
 import com.westga.cs3211.prescription_app.model.SideEffectManager;
 import com.westga.cs3211.prescription_app.resources.StaticFields;
@@ -23,7 +25,9 @@ import javafx.collections.FXCollections;
  */
 public class PrescriptionAppViewModel {
 	
-	private PrescriptionManager manager;
+	private PrescriptionManager prescriptionManager;
+	private ReminderManager reminderManager;
+	
 	private SideEffectManager sideEffectsManager;
 	private ListProperty<SideEffect> sideEffectsListProperty;
 	private ListProperty<Prescription> prescriptionListProperty;
@@ -37,10 +41,11 @@ public class PrescriptionAppViewModel {
 	 * 
 	 */
 	public PrescriptionAppViewModel() {
-		this.manager = new PrescriptionManager();
+		this.prescriptionManager = new PrescriptionManager();
+		this.reminderManager = new ReminderManager();
 		this.sideEffectsManager = new SideEffectManager(StaticFields.SIDE_EFFECTS_FILE);
 		this.prescriptionListProperty = new SimpleListProperty<Prescription>();
-		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.manager.getPrescriptions()));
+		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.prescriptionManager.getPrescriptions()));
 		this.sideEffectsListProperty = new SimpleListProperty<SideEffect>();
 		this.sideEffectsListProperty.set(FXCollections.observableArrayList(this.sideEffectsManager.getSideEffects()));
 		this.emptyPrescriptionList = new SimpleBooleanProperty(true);
@@ -58,6 +63,10 @@ public class PrescriptionAppViewModel {
 	public BooleanProperty emptyPrescriptionList() {
 		return this.emptyPrescriptionList;
 	}
+	
+	public void addReminder(Prescription prescription, LocalDateTime reminderDate, int daysBetween) {
+		this.reminderManager.add(new Reminder(prescription, reminderDate, daysBetween));
+	}
 
 	/**
 	 * Updates the specified prescription to the list of prescriptions
@@ -72,8 +81,8 @@ public class PrescriptionAppViewModel {
 	 * @param instructions describes how to take the prescription
 	 */
 	public void updatePrescription(Prescription prescription, int renewFrequency, int dosageCount, int refillDosageCount, String instructions) {
-		this.manager.update(prescription, renewFrequency, dosageCount, refillDosageCount, instructions);
-		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.manager.getPrescriptions()));
+		this.prescriptionManager.update(prescription, renewFrequency, dosageCount, refillDosageCount, instructions);
+		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.prescriptionManager.getPrescriptions()));
 	}
 
 	/**
@@ -85,8 +94,8 @@ public class PrescriptionAppViewModel {
 	 * @param prescription the prescription to be added
 	 */
 	public void addPrescription(Prescription prescription) {
-		this.manager.add(prescription);
-		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.manager.getPrescriptions()));
+		this.prescriptionManager.add(prescription);
+		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.prescriptionManager.getPrescriptions()));
 	}
 	
 	/**
@@ -111,8 +120,8 @@ public class PrescriptionAppViewModel {
 	 */
 	
 	public void removePrescription(Prescription prescription) {
-		this.manager.remove(prescription);
-		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.manager.getPrescriptions()));
+		this.prescriptionManager.remove(prescription);
+		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.prescriptionManager.getPrescriptions()));
 	}
 
 	/**

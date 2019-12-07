@@ -91,7 +91,7 @@ public class NewMed {
     		//TODO
     		// The createReminder below is to be change to return a Reminder object once reminder class
     		// is written. A handle for the prescription the reminder is for is above.
-    		this.createReminder();
+    		this.createReminder(prescription);
         	this.viewmodel.addPrescription(prescription);   
 
         	this.addBtn.getScene().getWindow().hide();
@@ -121,13 +121,14 @@ public class NewMed {
 		return prescription;
 	}
 	
-	private void createReminder() {
+	private void createReminder(Prescription prescription) {
 		LocalDate startDate = this.startDate.getValue();
 		int hour = Integer.parseInt(this.hour.getText());
 		int minute = Integer.parseInt(this.minute.getText());
 		LocalTime time = LocalTime.of(hour, minute);
 		LocalDateTime dateTime = LocalDateTime.of(startDate, time);
-		
+		int daysBetween = Integer.parseInt(this.interationDays.getText());
+		this.viewmodel.addReminder(prescription, dateTime, daysBetween);
 	}
     
     /**
