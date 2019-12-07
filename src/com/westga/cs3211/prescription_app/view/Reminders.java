@@ -13,6 +13,12 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * The public class reminders
+ * 
+ * @author michael jiles
+ *
+ */
 public class Reminders {
 
 	@FXML
@@ -20,9 +26,9 @@ public class Reminders {
 
 	@FXML
 	private Button viewInstructionsButton;
-	
-    @FXML
-    private Button confirmMedTakenButton;
+
+	@FXML
+	private Button confirmMedTakenButton;
 
 	private PrescriptionAppViewModel viewmodel;
 
@@ -30,23 +36,23 @@ public class Reminders {
 	private void initialize() {
 		this.viewInstructionsButton.disableProperty().set(true);
 		this.confirmMedTakenButton.disableProperty().set(true);
-		
+
 		this.remindersListView.getSelectionModel().selectedItemProperty()
-		.addListener((observable, oldValue, newValue) -> {
-			if (newValue != null) {
-				this.viewInstructionsButton.disableProperty().set(false);
-				this.confirmMedTakenButton.disableProperty().set(false);
-			} else {
-				this.viewInstructionsButton.disableProperty().set(true);
-				this.confirmMedTakenButton.disableProperty().set(true);
-			}
-		});
+				.addListener((observable, oldValue, newValue) -> {
+					if (newValue != null) {
+						this.viewInstructionsButton.disableProperty().set(false);
+						this.confirmMedTakenButton.disableProperty().set(false);
+					} else {
+						this.viewInstructionsButton.disableProperty().set(true);
+						this.confirmMedTakenButton.disableProperty().set(true);
+					}
+				});
 	}
-	
-    @FXML
-    void confirmMedTaken(ActionEvent event) {
-    	this.viewmodel.confirmMedTaken(this.remindersListView.getSelectionModel().getSelectedItem());
-    }
+
+	@FXML
+	void confirmMedTaken(ActionEvent event) {
+		this.viewmodel.confirmMedTaken(this.remindersListView.getSelectionModel().getSelectedItem());
+	}
 
 	@FXML
 	void openInstructionsWindow(ActionEvent event) {
@@ -68,7 +74,15 @@ public class Reminders {
 			System.err.println(e.getMessage());
 		}
 	}
-
+	
+	/**
+	 * Carries information from previous view to this one
+	 * 
+	 * @precondition none
+	 * @postcondition viewmodel is updated to be the passed in one.
+	 * 
+	 * @param viewmodel the view model
+	 */
 	public void bindViews(PrescriptionAppViewModel viewmodel) {
 		this.viewmodel = viewmodel;
 		this.remindersListView.itemsProperty().bindBidirectional(this.viewmodel.reminderListProperty());
