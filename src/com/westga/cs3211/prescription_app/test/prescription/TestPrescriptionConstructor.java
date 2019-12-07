@@ -24,6 +24,15 @@ class TestPrescriptionConstructor {
 	}
 	
 	@Test
+	void testRefillDosageIsZero() {
+		assertThrows(IllegalArgumentException.class, ()-> new Prescription("Water", false, true, false, 1, 5, 0, "Take Meds"));
+	}
+	@Test
+	void testRefillDosageIsLessThanZero() {
+		assertThrows(IllegalArgumentException.class, ()-> new Prescription("Water", false, true, false, 1, 5, -1, "Take Meds"));
+	}
+	
+	@Test
 	void testSuccessfulCreation() {
 		Prescription prescription = new Prescription("Water", false, true, false, 7, 5, 2, "Take Meds");
 		

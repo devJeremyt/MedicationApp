@@ -109,18 +109,7 @@ public class SideEffectManager {
 	public List<SideEffect> getSideEffects() {
 		return this.sideEffects;
 	}
-	
-	/**
-	 * Returns the file the sideEffects are saved to.
-	 * 
-	 * @precondition none
-	 * @postcondition none
-	 * 
-	 * @return the file the side effects are saved to
-	 */
-	public File getStorageFile() {
-		return this.storageFile;
-	}
+
 	
 	
 }
