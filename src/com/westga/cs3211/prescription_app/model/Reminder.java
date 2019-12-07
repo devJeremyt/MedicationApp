@@ -74,4 +74,9 @@ public class Reminder {
 	public boolean hasBeenTaken() {
 		return this.prescriptionTaken;
 	}
+	
+	@Override
+	public String toString() {
+		return this.prescription.getName() + ": " + this.reminderDate + " - times reminded: " + this.timesReminded;
+	}
 }

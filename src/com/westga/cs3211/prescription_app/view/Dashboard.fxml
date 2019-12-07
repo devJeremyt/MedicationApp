@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="600.0" minWidth="400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westga.cs3211.prescription_app.view.Dashboard">
+<AnchorPane minHeight="600.0" minWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westga.cs3211.prescription_app.view.Dashboard">
    <children>
       <ListView fx:id="prescriptionListView" layoutX="14.0" layoutY="57.0" prefHeight="494.0" prefWidth="374.0" />
       <Button fx:id="addButton" layoutX="50.0" layoutY="21.0" mnemonicParsing="false" onAction="#openNewMedDialog" text="Add">
@@ -23,12 +23,17 @@
             <Font size="14.0" />
          </font>
          </Button>
-      <Button fx:id="viewDetailsButton" layoutX="48.0" layoutY="559.0" mnemonicParsing="false" onAction="#openViewDetailsDialog" text="View Details">
+      <Button fx:id="viewDetailsButton" layoutX="16.0" layoutY="559.0" mnemonicParsing="false" onAction="#openViewDetailsDialog" text="View Details">
          <font>
             <Font size="14.0" />
          </font>
       </Button>
-      <Button fx:id="viewSideEffectsButton" layoutX="241.0" layoutY="559.0" mnemonicParsing="false" onAction="#openViewSideEffectsDialog" text="View Side Effects">
+      <Button fx:id="viewSideEffectsButton" layoutX="131.0" layoutY="559.0" mnemonicParsing="false" onAction="#openViewSideEffectsDialog" text="View Side Effects">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="viewRemindersButton" layoutX="268.0" layoutY="559.0" mnemonicParsing="false" onAction="#openRemindersView" text="View Reminders">
          <font>
             <Font size="14.0" />
          </font>

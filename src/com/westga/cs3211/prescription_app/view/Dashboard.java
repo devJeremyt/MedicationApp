@@ -31,6 +31,9 @@ public class Dashboard {
 	private Button addSideEffectButton;
 	
 	@FXML
+    private Button viewRemindersButton;
+	
+	@FXML
 	private Button removeButton;
 
 	@FXML

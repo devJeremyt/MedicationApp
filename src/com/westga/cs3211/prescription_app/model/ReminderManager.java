@@ -24,6 +24,10 @@ public class ReminderManager {
 		return this.reminders.add(reminder);
 	}
 	
+	public ArrayList<Reminder> getRemindersBeingDisplayed() {
+		return this.remindersBeingDisplayed;
+	}
+	
 	/**
 	 * The Class ReminderTimerTask.
 	 */

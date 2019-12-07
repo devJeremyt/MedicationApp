@@ -32,6 +32,7 @@ public class PrescriptionAppViewModel {
 	private ListProperty<SideEffect> sideEffectsListProperty;
 	private ListProperty<Prescription> prescriptionListProperty;
 	private BooleanProperty emptyPrescriptionList;
+	private ListProperty<Reminder> reminderListProperty;
 	
 	/**
 	 * Creates a new PrescriptionAppViewModel
@@ -46,6 +47,7 @@ public class PrescriptionAppViewModel {
 		this.sideEffectsManager = new SideEffectManager(StaticFields.SIDE_EFFECTS_FILE);
 		this.prescriptionListProperty = new SimpleListProperty<Prescription>();
 		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.prescriptionManager.getPrescriptions()));
+		this.reminderListProperty.set(FXCollections.observableArrayList(this.reminderManager.getRemindersBeingDisplayed()));
 		this.sideEffectsListProperty = new SimpleListProperty<SideEffect>();
 		this.sideEffectsListProperty.set(FXCollections.observableArrayList(this.sideEffectsManager.getSideEffects()));
 		this.emptyPrescriptionList = new SimpleBooleanProperty(true);
@@ -66,6 +68,7 @@ public class PrescriptionAppViewModel {
 	
 	public void addReminder(Prescription prescription, LocalDateTime reminderDate, int daysBetween) {
 		this.reminderManager.add(new Reminder(prescription, reminderDate, daysBetween));
+		this.reminderListProperty.add(new Reminder(prescription, reminderDate, daysBetween));
 	}
 
 	/**
@@ -134,6 +137,10 @@ public class PrescriptionAppViewModel {
 	 */
 	public ListProperty<SideEffect> sideEffectListProperty() {
 		return this.sideEffectsListProperty;
+	}
+	
+	public ListProperty<Reminder> reminderListProperty() {
+		return this.reminderListProperty;
 	}
 
 	/**
