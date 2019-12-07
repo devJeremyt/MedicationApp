@@ -7,7 +7,7 @@ import java.util.Calendar.Builder;
 import java.util.Timer;
 import java.util.TimerTask;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class ReminderManager.
  */
@@ -66,6 +66,12 @@ public class ReminderManager {
 		for (Reminder reminder : this.remindersBeingDisplayed) {
 			if (reminderToConfirm == reminder) {
 				//TODO Confirm Medication is Taken in Records
+				reminder.takePrescription();
+			}
+		}
+		
+		for (Reminder reminder : this.reminders) {
+			if (reminderToConfirm == reminder) {
 				reminder.takePrescription();
 			}
 		}
