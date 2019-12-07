@@ -1,56 +1,77 @@
 package com.westga.cs3211.prescription_app.model;
 
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Calendar.Builder;
 import java.util.Date;
 import java.util.Queue;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * The Class Reminder.
+ * 
+ * @author Michael Jiles
+ */
 public class Reminder {
 
 	private Prescription prescription;
-	private static Timer reminderTimer;
-	private static ReminderTimerTask reminderTask;
-	public static boolean reminderFiring;
-	public static int remindCount;
-	private Date nextScheduledTime;
-	private Queue<Date> reminderDates;
+	private LocalDateTime reminderDate;
+	private int timesReminded;
+	private boolean prescriptionTaken;
+	private int daysBetween;
 
-	private class ReminderTimerTask extends TimerTask {
 
-		@Override
-		public void run() {
-			Reminder.reminderFiring = true;
-			remindCount++;
-			if (remindCount <= 6) {
-				reminderTimer.schedule(task, time);
-			}
-		}
-	}
-
-	public Reminder(Prescription prescription, Queue<Date> reminderDates) {
-		if (reminderDates.isEmpty()) {
-			throw new IllegalArgumentException("No valid dates passed in.");
-		}
-		this.reminderDates = reminderDates;
+	/**
+	 * Instantiates a new reminder.
+	 *
+	 * @param prescription the prescription
+	 * @param reminderDate the reminder date
+	 * @param daysBetween days between taking the medication
+	 */
+	public Reminder(Prescription prescription, LocalDateTime reminderDate, int daysBetween) {
+		this.reminderDate = reminderDate;
+		this.daysBetween = daysBetween;
 		this.prescription = prescription;
-		reminderTimer = new Timer();
-		this.reminderTask = new ReminderTimerTask();
-		reminderTimer.schedule(this.reminderTask, this.reminderDates.remove());
-		reminderFiring = false;
+		this.prescriptionTaken = false;
 	}
 
-	public void disableReminder() {
-		reminderTimer.cancel();
-		reminderFiring = false;
-	}
-
+	/**
+	 * Gets the prescription.
+	 *
+	 * @return the prescription
+	 */
 	public Prescription getPrescription() {
 		return this.prescription;
 	}
-
-	public void setNextReminder() {
-		if (!this.reminderDates.isEmpty()) {
-			reminderTimer.schedule(this.reminderTask, this.reminderDates.remove());
-		}
+	
+	public LocalDateTime getDateTime() {
+		return this.reminderDate;
+	}
+	
+	public void setDateTime(LocalDateTime time) {
+		this.reminderDate = time;;
+	}
+	
+	public void increaseTimesReminded() {
+		this.timesReminded++;
+	}
+	
+	public int getTimesReminded() {
+		return this.timesReminded;
+	}
+	
+	public void takePrescription() {
+		this.prescriptionTaken = true;
+		this.timesReminded = 0;
+	}
+	
+	public void reschedulePrescription() {
+		this.setDateTime(this.reminderDate.plusDays(this.daysBetween));
+		this.prescriptionTaken = false;
+	}
+	
+	public boolean hasBeenTaken() {
+		return this.prescriptionTaken;
 	}
 }
