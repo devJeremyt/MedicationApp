@@ -1,4 +1,8 @@
 Again Water,false,false,false,654,54,3,,
+<<<<<<< HEAD
+Lead,false,false,false,5,45,8,Lick Lead paint from walls,
+Loud Music,false,false,false,4,45,8,Listen when feeling drowsy to stay awake.,
+=======
 weg,false,false,false,1,1,1,,
 wgew,false,false,false,1,1,1,,
 we,false,false,false,1,1,1,,
@@ -10,6 +14,10 @@ jioafewjio,false,false,false,1,1,1,,
 fek,false,false,false,1,1,1,,
 owej,false,false,false,1,1,1,,
 area,false,false,false,1,1,1,,
+<<<<<<< HEAD
 sdf,false,false,false,1,1,1,fawegoawiehoihwtwo,
 sdv,false,false,false,1,1,1,,
 wef,false,false,false,1,1,1,aweg,
+=======
+>>>>>>> branch 'master' of https://github.com/devJeremyt/MedicationApp.git
+>>>>>>> branch 'master' of https://github.com/devJeremyt/MedicationApp.git

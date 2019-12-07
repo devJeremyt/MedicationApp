@@ -67,6 +67,16 @@ public class PrescriptionAppViewModel {
 		return this.emptyPrescriptionList;
 	}
 	
+	/**
+	 * Creates a new reminder for the prescription specified
+	 * 
+	 * @precondition none
+	 * @postcondition new reminder is created
+	 * 
+	 * @param prescription the prescription the reminder is for
+	 * @param reminderDate the first date the prescription is to be taken
+	 * @param daysBetween the frequency in days the prescription is to be taken
+	 */
 	public void addReminder(Prescription prescription, LocalDateTime reminderDate, int daysBetween) {
 		this.reminderManager.add(new Reminder(prescription, reminderDate, daysBetween));
 	}
@@ -143,6 +153,14 @@ public class PrescriptionAppViewModel {
 		return this.sideEffectsListProperty;
 	}
 	
+	/**
+	 * Returns the Reminder List property
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the list property of reminders
+	 */
 	public ListProperty<Reminder> reminderListProperty() {
 		return this.reminderListProperty;
 	}

@@ -1,5 +1,9 @@
 package com.westga.cs3211.prescription_app.view;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 import com.westga.cs3211.prescription_app.model.Prescription;
 import com.westga.cs3211.prescription_app.viewmodel.PrescriptionAppViewModel;
 
@@ -7,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -41,39 +47,12 @@ public class UpdateMed {
 
     @FXML
     private CheckBox withFoodCheck;
-
-    @FXML
-    private CheckBox monday;
-
-    @FXML
-    private CheckBox tuesday;
-
-    @FXML
-    private CheckBox wednesday;
-
-    @FXML
-    private CheckBox thursday;
-
-    @FXML
-    private CheckBox friday;
-
-    @FXML
-    private CheckBox saturday;
-
-    @FXML
-    private CheckBox sunday;
-
+    
     @FXML
     private TextField hour;
 
     @FXML
     private TextField minute;
-
-    @FXML
-    private RadioButton am;
-
-    @FXML
-    private RadioButton pm;
 
     @FXML
     private TextArea instructions;
@@ -83,6 +62,18 @@ public class UpdateMed {
 
     @FXML
     private Button cancelBtn;
+    
+    @FXML
+    private Button upButton;
+
+    @FXML
+    private Button downButton;
+
+    @FXML
+    private Label interationDays;
+    
+    @FXML
+    private DatePicker updatedDate;
 
     private PrescriptionAppViewModel viewmodel;
     private Prescription prescriptionToUpdate;
@@ -104,13 +95,26 @@ public class UpdateMed {
     	int dosageCount = Integer.parseInt(this.dosage.getText());
     	int refillDosageCount = Integer.parseInt(this.dosesPerRefill.getText());
     	String instructions = this.instructions.getText();
+    	this.updateReminder();
 
     	this.viewmodel.updatePrescription(this.prescriptionToUpdate, renewFrequency, dosageCount, refillDosageCount, instructions);
 
     	this.updateBtn.getScene().getWindow().hide();
     }
     
-    /**
+    private void updateReminder() {
+    	LocalDate startDate = this.updatedDate.getValue();
+		int hour = Integer.parseInt(this.hour.getText());
+		int minute = Integer.parseInt(this.minute.getText());
+		LocalTime time = LocalTime.of(hour, minute);
+		LocalDateTime dateTime = LocalDateTime.of(startDate, time);
+		int daysBetween = Integer.parseInt(this.interationDays.getText());
+		//TODO
+		// Add method call for updating reminder
+		
+	}
+
+	/**
      * Cancels the action and returns user to the previous screen
      * 
      * @precondition none
