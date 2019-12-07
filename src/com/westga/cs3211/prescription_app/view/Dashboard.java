@@ -204,6 +204,7 @@ public class Dashboard {
 	
     @FXML
     void openRemindersView(ActionEvent event) {
+    	this.viewmodel.updateRemindersBeingDisplayed();
     	try {
 			Stage viewRemindersModal = new Stage();
 			FXMLLoader loader = new FXMLLoader();
