@@ -81,6 +81,12 @@ public class PrescriptionAppViewModel {
 		this.reminderManager.add(new Reminder(prescription, reminderDate, daysBetween));
 	}
 	
+	/**
+	 * Updates the reminderListProperty to display what is contained in the remindersBeingDisplayed list
+	 * 
+	 * @precondition none
+	 * @postcondition  reminderListProperty is updated to display what is contained in the remindersBeingDisplayed list
+	 */
 	public void updateRemindersBeingDisplayed() {
 		this.reminderListProperty.set(FXCollections.observableArrayList(this.reminderManager.getRemindersBeingDisplayed()));
 	}
@@ -209,6 +215,13 @@ public class PrescriptionAppViewModel {
 	}
 
 
+	/**
+	 * Confirms that the medication in the passed in reminder has been taken
+	 * 
+	 * @precondition none
+	 * @postcondition the reminderManager performs confirmMedicationTaken
+	 * @param selectedItem the reminder to be confirmed
+	 */
 	public void confirmMedTaken(Reminder selectedItem) {
 		this.reminderManager.confirmMedicationTaken(selectedItem);
 		
