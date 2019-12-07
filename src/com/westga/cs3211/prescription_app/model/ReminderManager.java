@@ -46,22 +46,26 @@ public class ReminderManager {
 			}
 			
 			for (Reminder reminder : ReminderManager.this.reminders) {
+				reminder.updateTimesReminded();
 				if (this.reminderTimeIsInPast(reminder)) {
-					reminder.increaseTimesReminded();
 					if (!ReminderManager.this.remindersBeingDisplayed.contains(reminder)) {
 						ReminderManager.this.remindersBeingDisplayed.add(reminder);
 					}
-					if (reminder.getTimesReminded() > 6) {
+					if (reminder.getTimesReminded() == 6) {
 						//TODO Record medication is not taken.
 						reminder.reschedulePrescription();
 						ReminderManager.this.remindersBeingDisplayed.remove(reminder);
 					}
 				}
 			}
+			
+			for (Reminder reminder: ReminderManager.this.remindersBeingDisplayed) {
+				reminder.updateTimesReminded();
+			}
 		}
 		
 		private boolean reminderTimeIsInPast(Reminder reminder) {
-			return reminder.getDateTime().plusMinutes(reminder.getTimesReminded() * 10).isBefore(LocalDateTime.now());
+			return reminder.getDateTime().isBefore(LocalDateTime.now());
 		}
 	}
 

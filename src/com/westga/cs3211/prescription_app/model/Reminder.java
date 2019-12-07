@@ -21,13 +21,12 @@ public class Reminder {
 	private boolean prescriptionTaken;
 	private int daysBetween;
 
-
 	/**
 	 * Instantiates a new reminder.
 	 *
 	 * @param prescription the prescription
 	 * @param reminderDate the reminder date
-	 * @param daysBetween days between taking the medication
+	 * @param daysBetween  days between taking the medication
 	 */
 	public Reminder(Prescription prescription, LocalDateTime reminderDate, int daysBetween) {
 		this.reminderDate = reminderDate;
@@ -44,37 +43,56 @@ public class Reminder {
 	public Prescription getPrescription() {
 		return this.prescription;
 	}
-	
+
 	public LocalDateTime getDateTime() {
 		return this.reminderDate;
 	}
-	
+
 	public void setDateTime(LocalDateTime time) {
-		this.reminderDate = time;;
+		this.reminderDate = time;
 	}
-	
-	public void increaseTimesReminded() {
-		this.timesReminded++;
+
+	public void updateTimesReminded() {
+		if (LocalDateTime.now().isAfter(this.reminderDate)) {
+			if (LocalDateTime.now().isBefore(this.reminderDate.plusMinutes(10))) {
+				this.timesReminded = 1;
+			} else if (LocalDateTime.now().isBefore(this.reminderDate.plusMinutes(20))) {
+				this.timesReminded = 2;
+			} else if (LocalDateTime.now().isBefore(this.reminderDate.plusMinutes(30))) {
+				this.timesReminded = 3;
+			} else if (LocalDateTime.now().isBefore(this.reminderDate.plusMinutes(40))) {
+				this.timesReminded = 4;
+			} else if (LocalDateTime.now().isBefore(this.reminderDate.plusMinutes(50))) {
+				this.timesReminded = 5;
+			} else if (LocalDateTime.now().isBefore(this.reminderDate.plusHours(1))) {
+				this.timesReminded = 6;
+			} else {
+				this.timesReminded = 0;
+			}
+		} else {
+			this.timesReminded = 0;
+		}
 	}
-	
+
 	public int getTimesReminded() {
 		return this.timesReminded;
 	}
-	
+
 	public void takePrescription() {
 		this.prescriptionTaken = true;
 		this.timesReminded = 0;
 	}
-	
+
 	public void reschedulePrescription() {
 		this.setDateTime(this.reminderDate.plusDays(this.daysBetween));
 		this.prescriptionTaken = false;
+		this.timesReminded = 0;
 	}
-	
+
 	public boolean hasBeenTaken() {
 		return this.prescriptionTaken;
 	}
-	
+
 	@Override
 	public String toString() {
 		return this.prescription.getName() + ": " + this.reminderDate + " - times reminded: " + this.timesReminded;

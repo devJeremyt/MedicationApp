@@ -69,7 +69,10 @@ public class PrescriptionAppViewModel {
 	
 	public void addReminder(Prescription prescription, LocalDateTime reminderDate, int daysBetween) {
 		this.reminderManager.add(new Reminder(prescription, reminderDate, daysBetween));
-		this.reminderListProperty.add(new Reminder(prescription, reminderDate, daysBetween));
+	}
+	
+	public void updateRemindersBeingDisplayed() {
+		this.reminderListProperty.set(FXCollections.observableArrayList(this.reminderManager.getRemindersBeingDisplayed()));
 	}
 
 	/**
