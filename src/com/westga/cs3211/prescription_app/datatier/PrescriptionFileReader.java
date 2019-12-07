@@ -102,7 +102,7 @@ public class PrescriptionFileReader {
 	 * Returns a new list of SideEffects from the specified file
 	 * 
 	 * @precondition filePath != null
-	 * 	 * 
+	 *  
 	 * @return a list of Prescriptions
 	 */
 	public static HashMap<String, List<String>> readMedicalRecordFile() {
