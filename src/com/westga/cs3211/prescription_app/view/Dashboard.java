@@ -26,6 +26,12 @@ public class Dashboard {
 
 	@FXML
 	private Button addButton;
+	
+	@FXML
+	private Button addSideEffectButton;
+	
+	@FXML
+	private Button removeButton;
 
 	@FXML
 	private Button updateButton;
@@ -51,6 +57,7 @@ public class Dashboard {
 		this.viewmodel = new PrescriptionAppViewModel();
 		this.updateButton.disableProperty().set(true);
 		this.viewDetailsButton.disableProperty().set(true);
+		this.removeButton.disableProperty().set(true);
 		this.setupBinding();
 		this.setupListeners();
 
@@ -62,9 +69,11 @@ public class Dashboard {
 					if (newValue != null) {
 						this.updateButton.disableProperty().set(false);
 						this.viewDetailsButton.disableProperty().set(false);
+						this.removeButton.disableProperty().set(false);
 					} else {
 						this.updateButton.disableProperty().set(true);
 						this.viewDetailsButton.disableProperty().set(true);
+						this.removeButton.disableProperty().set(false);
 					}
 				});
 
@@ -127,7 +136,7 @@ public class Dashboard {
 		} catch (Exception e) {
 			System.err.println(e.getMessage());
 		}
-
+		
 	}
 
 	/**
@@ -150,6 +159,38 @@ public class Dashboard {
 			ViewDetails details = loader.getController();
 			details.bind(this.prescriptionListView.getSelectionModel().getSelectedItem());
 			viewDetailsModal.showAndWait();
+
+		} catch (Exception e) {
+			System.err.println(e.getMessage());
+		}
+
+	}
+	
+	@FXML
+	private void removeMedication() {
+		this.viewmodel.removePrescription(this.prescriptionListView.getSelectionModel().getSelectedItem());
+	}
+	
+	/**
+	 * Opens the ViewSideEffects Modal Dialog
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 */
+	public void openViewSideEffectsDialog() {
+		try {
+			Stage viewSideEffectsModal = new Stage();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("ViewSideEffects.fxml"));
+			loader.load();
+			Pane pane = loader.getRoot();
+			Scene scene = new Scene(pane);
+			viewSideEffectsModal.setScene(scene);
+			viewSideEffectsModal.initOwner(this.addButton.getScene().getWindow());
+			viewSideEffectsModal.initModality(Modality.APPLICATION_MODAL);
+			ViewSideEffects viewEffects = loader.getController();
+			viewEffects.bindViews(this.viewmodel);
+			viewSideEffectsModal.showAndWait();
 
 		} catch (Exception e) {
 			System.err.println(e.getMessage());

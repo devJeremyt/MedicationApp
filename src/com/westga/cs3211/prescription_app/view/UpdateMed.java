@@ -130,6 +130,7 @@ public class UpdateMed {
      * @postcondition none
      * 
      * @param prescription the prescription that is being altered
+     * @param viewmodel the viewmodel for the Prescription app
      * 
      */
 	public void bindViews(PrescriptionAppViewModel viewmodel, Prescription prescription) {

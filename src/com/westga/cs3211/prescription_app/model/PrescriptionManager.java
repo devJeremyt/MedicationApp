@@ -75,9 +75,23 @@ public class PrescriptionManager {
 	 * 
 	 * @return the list of prescriptions
 	 */
+	
 	public List<Prescription> getPrescriptions() {
 		return this.prescriptions;
 	}
 	
 	
+	/**
+	 * Removes a prescription from the file
+	 * 
+	 * @precondition prescription != null
+	 * @postcondition list of prescriptions -= prescription, prescription file updates accordingly, view updates accordingly.
+	 * 
+	 * @param prescription 	the prescription to be removed
+	 */
+	
+	public void remove(Prescription prescription) {
+		this.prescriptions.remove(prescription);
+		PrescriptionFileWriter.rewriteCSVFile(StaticFields.CURRENT_PRESCRIPTION_FILE, this.prescriptions);
+	}
 }

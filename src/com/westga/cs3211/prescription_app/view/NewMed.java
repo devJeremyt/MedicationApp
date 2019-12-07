@@ -1,5 +1,9 @@
 package com.westga.cs3211.prescription_app.view;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+
 import com.westga.cs3211.prescription_app.model.Prescription;
 import com.westga.cs3211.prescription_app.viewmodel.PrescriptionAppViewModel;
 
@@ -9,7 +13,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
@@ -41,40 +46,16 @@ public class NewMed {
     private CheckBox withoutAlcoholCheck;
 
     @FXML
+    private DatePicker startDate;
+    
+    @FXML
     private CheckBox withFoodCheck;
-
-    @FXML
-    private CheckBox monday;
-
-    @FXML
-    private CheckBox tuesday;
-
-    @FXML
-    private CheckBox wednesday;
-
-    @FXML
-    private CheckBox thursday;
-
-    @FXML
-    private CheckBox friday;
-
-    @FXML
-    private CheckBox saturday;
-
-    @FXML
-    private CheckBox sunday;
 
     @FXML
     private TextField hour;
 
     @FXML
     private TextField minute;
-
-    @FXML
-    private RadioButton am;
-
-    @FXML
-    private RadioButton pm;
 
     @FXML
     private TextArea instructions;
@@ -85,19 +66,18 @@ public class NewMed {
     @FXML
     private Button cancelBtn;
     
+    @FXML
+    private Button upButton;
+
+    @FXML
+    private Button downButton;
+
+    @FXML
+    private Label interationDays;
+    
     private PrescriptionAppViewModel viewmodel;
     
-    
-    /**
-     * Sets the viewmodel
-     * 
-     * @precondition none
-     * @postcondition none
-     * 
-     */
-    
-    
-    /**
+	/**
      * Adds a prescription to the list of Prescriptions
      * 
      * @precondition none
@@ -107,16 +87,11 @@ public class NewMed {
      */
     public void addPrescription(ActionEvent event) {
     	try {
-    		String name = this.name.getText();
-        	boolean avoidDriving = this.avoidDrivingCheck.isPressed();
-        	boolean withoutAlcohol = this.withoutAlcoholCheck.isPressed();
-        	boolean withFood = this.withFoodCheck.isPressed();
-        	int renewFrequency = Integer.parseInt(this.refillsPerRenew.getText());
-        	int dosageCount = Integer.parseInt(this.dosage.getText());
-        	int dosesPerRefill = Integer.parseInt(this.dosesPerRefill.getText());
-        	String instructions = this.instructions.getText();
-        	
-        	Prescription prescription = new Prescription(name, avoidDriving, withoutAlcohol, withFood, renewFrequency, dosageCount, dosesPerRefill, instructions);
+    		Prescription prescription = this.createPrescription();
+    		//TODO
+    		// The createReminder below is to be change to return a Reminder object once reminder class
+    		// is written. A handle for the prescription the reminder is for is above.
+    		this.createReminder();
         	this.viewmodel.addPrescription(prescription);   
 
         	this.addBtn.getScene().getWindow().hide();
@@ -131,6 +106,29 @@ public class NewMed {
     	}
     	
     }
+
+	private Prescription createPrescription() {
+		String name = this.name.getText();
+		boolean avoidDriving = this.avoidDrivingCheck.isPressed();
+		boolean withoutAlcohol = this.withoutAlcoholCheck.isPressed();
+		boolean withFood = this.withFoodCheck.isPressed();
+		int renewFrequency = Integer.parseInt(this.refillsPerRenew.getText());
+		int dosageCount = Integer.parseInt(this.dosage.getText());
+		int dosesPerRefill = Integer.parseInt(this.dosesPerRefill.getText());
+		String instructions = this.instructions.getText();
+		
+		Prescription prescription = new Prescription(name, avoidDriving, withoutAlcohol, withFood, renewFrequency, dosageCount, dosesPerRefill, instructions);
+		return prescription;
+	}
+	
+	private void createReminder() {
+		LocalDate startDate = this.startDate.getValue();
+		int hour = Integer.parseInt(this.hour.getText());
+		int minute = Integer.parseInt(this.minute.getText());
+		LocalTime time = LocalTime.of(hour, minute);
+		LocalDateTime dateTime = LocalDateTime.of(startDate, time);
+		
+	}
     
     /**
      * Cancels the action and returns user to the previous screen
@@ -144,6 +142,36 @@ public class NewMed {
     	this.cancelBtn.getScene().getWindow().hide();
     }
 
+    /**
+     * Increments the iteration days up by one
+     * 
+     * @precondition none
+     * @postcondition iteration days is one more
+     * 
+     * 
+     */
+    public void increaseIterationDays() {
+    	int days = Integer.parseInt(this.interationDays.getText());
+    	days++;
+    	this.interationDays.setText(String.valueOf(days));
+    }
+    
+    /**
+     * Decrements the iteration days down by one
+     * 
+     * @precondition none
+     * @postcondition iteration days is one less
+     * 
+     * 
+     */
+    public void decreaseIterationDays() {
+    	int days = Integer.parseInt(this.interationDays.getText());
+    	if (days > 1) {
+    		days--;
+    	}
+    	this.interationDays.setText(String.valueOf(days));
+    }
+    
     /**
      * Binds the viewmodel between views
      * 

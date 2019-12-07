@@ -1,7 +1,12 @@
 package com.westga.cs3211.prescription_app.viewmodel;
 
+import java.time.LocalDateTime;
+
 import com.westga.cs3211.prescription_app.model.Prescription;
 import com.westga.cs3211.prescription_app.model.PrescriptionManager;
+import com.westga.cs3211.prescription_app.model.SideEffect;
+import com.westga.cs3211.prescription_app.model.SideEffectManager;
+import com.westga.cs3211.prescription_app.resources.StaticFields;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.ListProperty;
@@ -19,6 +24,8 @@ import javafx.collections.FXCollections;
 public class PrescriptionAppViewModel {
 	
 	private PrescriptionManager manager;
+	private SideEffectManager sideEffectsManager;
+	private ListProperty<SideEffect> sideEffectsListProperty;
 	private ListProperty<Prescription> prescriptionListProperty;
 	private BooleanProperty emptyPrescriptionList;
 	
@@ -31,8 +38,11 @@ public class PrescriptionAppViewModel {
 	 */
 	public PrescriptionAppViewModel() {
 		this.manager = new PrescriptionManager();
+		this.sideEffectsManager = new SideEffectManager(StaticFields.SIDE_EFFECTS_FILE);
 		this.prescriptionListProperty = new SimpleListProperty<Prescription>();
 		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.manager.getPrescriptions()));
+		this.sideEffectsListProperty = new SimpleListProperty<SideEffect>();
+		this.sideEffectsListProperty.set(FXCollections.observableArrayList(this.sideEffectsManager.getSideEffects()));
 		this.emptyPrescriptionList = new SimpleBooleanProperty(true);
 	}
 
@@ -89,6 +99,75 @@ public class PrescriptionAppViewModel {
 	 */
 	public ListProperty<Prescription> prescriptionListProperty() {
 		return this.prescriptionListProperty;
+	}
+	
+	
+	/**
+	 * Removes the selected prescription
+	 * 
+	 * @precondition none
+	 * @postcondition prescription is removed from list and file
+	 * @param prescription the prescription to be removed
+	 */
+	
+	public void removePrescription(Prescription prescription) {
+		this.manager.remove(prescription);
+		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.manager.getPrescriptions()));
+	}
+
+	/**
+	 * Returns the SideEffects list property
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * 
+	 * @return the list property of sideEffects
+	 */
+	public ListProperty<SideEffect> sideEffectListProperty() {
+		return this.sideEffectsListProperty;
+	}
+
+	/**
+	 * Removes the specified sideEffect
+	 * 
+	 * @precondition none
+	 * @postcondition sideEffect is removed, and list view is updated
+	 * 
+	 * @param sideEffect the side effect to be removed
+	 */
+	public void removeSideEffect(SideEffect sideEffect) {
+		this.sideEffectsManager.remove(sideEffect);
+		this.sideEffectsListProperty.set(FXCollections.observableArrayList(this.sideEffectsManager.getSideEffects()));
+		
+	}
+	
+	/**
+	 * Adds the specified sideEffect
+	 * 
+	 * @precondition none
+	 * @postcondition sideEffect is added, and list view is updated
+	 * 
+	 * @param sideEffect the side effect to be added
+	 */
+	public void addSideEffect(SideEffect sideEffect) {
+		this.sideEffectsManager.add(sideEffect);
+		this.sideEffectsListProperty.set(FXCollections.observableArrayList(this.sideEffectsManager.getSideEffects()));
+		
+	}
+	
+	/**
+	 * Updates the specified sideEffect
+	 * 
+	 * @precondition none
+	 * @postcondition the specified prescription is updated
+	 * 
+	 * @param sideEffect the sideEffect being update
+	 * @param description the updated description
+	 * @param dateTime the updated LocalDateTime
+	 */
+	public void updateSideEffect(SideEffect sideEffect, String description, LocalDateTime dateTime) {
+		this.sideEffectsManager.update(sideEffect, description, dateTime);
+		this.sideEffectsListProperty.set(FXCollections.observableArrayList(this.sideEffectsManager.getSideEffects()));
 	}
 	
 	

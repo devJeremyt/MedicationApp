@@ -12,7 +12,7 @@ class TestPrescriptionManagerConstructor {
 	@Test
 	void testSuccessfulConstruction() {
 		PrescriptionManager manager = new PrescriptionManager();
-		
+		manager.getPrescriptions();
 	}
 
 }
