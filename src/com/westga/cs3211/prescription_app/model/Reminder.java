@@ -27,6 +27,15 @@ public class Reminder {
 	 * @param daysBetween  days between taking the medication
 	 */
 	public Reminder(Prescription prescription, LocalDateTime reminderDate, int daysBetween) {
+		if (prescription == null) {
+			throw new IllegalArgumentException("prescription cannot be null");
+		}
+		if (reminderDate == null) {
+			throw new IllegalArgumentException("reminderDate cannot be null");
+		}
+		if (daysBetween <= 0) {
+			throw new IllegalArgumentException("daysBetween cannot be less than one");
+		}
 		this.reminderDate = reminderDate;
 		this.daysBetween = daysBetween;
 		this.prescription = prescription;
