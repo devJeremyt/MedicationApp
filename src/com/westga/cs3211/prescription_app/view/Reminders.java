@@ -10,27 +10,27 @@ import javafx.scene.control.ListView;
 
 public class Reminders {
 
-    @FXML
-    private ListView<Reminder> remindersListView;
+	@FXML
+	private ListView<Reminder> remindersListView;
 
-    @FXML
-    private Button viewInstructionsButton;
-    
-    private PrescriptionAppViewModel viewmodel;
-    
-    @FXML
+	@FXML
+	private Button viewInstructionsButton;
+
+	private PrescriptionAppViewModel viewmodel;
+
+	@FXML
 	private void initialize() {
-    	this.viewmodel = new PrescriptionAppViewModel();
-    	this.setupBindings();
-    }
+		this.viewInstructionsButton.disableProperty().set(true);
+	}
 
-    @FXML
-    void openInstructionsWindow(ActionEvent event) {
+	@FXML
+	void openInstructionsWindow(ActionEvent event) {
+		this.viewInstructionsButton.disableProperty().set(true);
+	}
 
-    }
-    
-    private void setupBindings() {
-    	this.remindersListView.itemsProperty().bindBidirectional(this.viewmodel.reminderListProperty());
-    }
+	public void bindViews(PrescriptionAppViewModel viewmodel) {
+		this.viewmodel = viewmodel;
+		this.remindersListView.itemsProperty().bindBidirectional(this.viewmodel.reminderListProperty());
+	}
 
 }

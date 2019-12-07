@@ -46,6 +46,7 @@ public class PrescriptionAppViewModel {
 		this.reminderManager = new ReminderManager();
 		this.sideEffectsManager = new SideEffectManager(StaticFields.SIDE_EFFECTS_FILE);
 		this.prescriptionListProperty = new SimpleListProperty<Prescription>();
+		this.reminderListProperty = new SimpleListProperty<Reminder>();
 		this.prescriptionListProperty.set(FXCollections.observableArrayList(this.prescriptionManager.getPrescriptions()));
 		this.reminderListProperty.set(FXCollections.observableArrayList(this.reminderManager.getRemindersBeingDisplayed()));
 		this.sideEffectsListProperty = new SimpleListProperty<SideEffect>();

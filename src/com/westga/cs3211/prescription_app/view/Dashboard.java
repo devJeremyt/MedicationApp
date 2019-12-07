@@ -3,6 +3,7 @@ package com.westga.cs3211.prescription_app.view;
 import com.westga.cs3211.prescription_app.model.Prescription;
 import com.westga.cs3211.prescription_app.viewmodel.PrescriptionAppViewModel;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -200,5 +201,26 @@ public class Dashboard {
 		}
 
 	}
+	
+    @FXML
+    void openRemindersView(ActionEvent event) {
+    	try {
+			Stage viewRemindersModal = new Stage();
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("Reminders.fxml"));
+			loader.load();
+			Pane pane = loader.getRoot();
+			Scene scene = new Scene(pane);
+			viewRemindersModal.setScene(scene);
+			viewRemindersModal.initOwner(this.viewRemindersButton.getScene().getWindow());
+			viewRemindersModal.initModality(Modality.APPLICATION_MODAL);
+			Reminders viewReminders = loader.getController();
+			viewReminders.bindViews(this.viewmodel);
+			viewRemindersModal.showAndWait();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+    }
 
 }
