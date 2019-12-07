@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane minHeight="600.0" minWidth="400.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.westga.cs3211.prescription_app.view.NewMed">
+   <children>
+      <Pane prefHeight="209.0" prefWidth="401.0">
+         <children>
+            <Label layoutX="167.0" layoutY="21.0" text="Name">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField id="name" fx:id="name" layoutX="214.0" layoutY="19.0" />
+            <Label layoutX="66.0" layoutY="57.0" text="Current Dosage Count">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="dosage" layoutX="214.0" layoutY="54.0" />
+            <Label layoutX="34.0" layoutY="92.0" prefHeight="20.0" prefWidth="170.0" text="Number of refills per renew">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="refillsPerRenew" layoutX="214.0" layoutY="90.0" />
+            <Label layoutX="42.0" layoutY="129.0" prefHeight="20.0" prefWidth="162.0" text="Number of doses per refill">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <TextField fx:id="dosesPerRefill" layoutX="214.0" layoutY="127.0" />
+            <CheckBox fx:id="withoutAlcoholCheck" layoutX="37.0" layoutY="162.0" mnemonicParsing="false" text="Don't take with Alcohol" />
+            <CheckBox fx:id="avoidDrivingCheck" layoutX="37.0" layoutY="179.0" mnemonicParsing="false" text="Don't take while driving" />
+            <CheckBox fx:id="withFoodCheck" layoutX="229.0" layoutY="170.0" mnemonicParsing="false" text="Take with Food" />
+         </children>
+      </Pane>
+      <Separator layoutX="1.0" layoutY="211.0" prefHeight="3.0" prefWidth="400.0" />
+      <Separator layoutY="366.0" prefHeight="3.0" prefWidth="400.0" />
+      <Label layoutX="164.0" layoutY="376.0" text="Instructions">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="instructions" layoutX="43.0" layoutY="400.0" prefHeight="132.0" prefWidth="315.0" />
+      <Button fx:id="addBtn" cancelButton="true" layoutX="127.0" layoutY="543.0" mnemonicParsing="false" onAction="#addPrescription" text="Add">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <Button fx:id="cancelBtn" cancelButton="true" layoutX="219.0" layoutY="542.0" mnemonicParsing="false" onAction="#cancel" text="Cancel">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+      <DatePicker fx:id="startDate" layoutX="182.0" layoutY="221.0" />
+      <Label layoutX="26.0" layoutY="225.0" text="Day to start Prescription">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="hour" layoutX="181.0" layoutY="255.0" prefHeight="25.0" prefWidth="27.0" />
+      <Label layoutX="144.0" layoutY="259.0" text="Time">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="214.0" layoutY="258.0" text=":">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="minute" layoutX="222.0" layoutY="255.0" prefHeight="25.0" prefWidth="27.0" />
+      <Label layoutX="269.0" layoutY="259.0" text="Use 24 hour clock">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="51.0" layoutY="315.0" text="Take Prescription every">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Button fx:id="upButton" layoutX="195.0" layoutY="291.0" mnemonicParsing="false" onAction="#increaseIterationDays" prefHeight="17.0" prefWidth="24.0" text="˄" />
+      <Button fx:id="downButton" layoutX="195.0" layoutY="336.0" mnemonicParsing="false" onAction="#decreaseIterationDays" prefHeight="17.0" prefWidth="24.0" text="˅" />
+      <Label fx:id="interationDays" layoutX="203.0" layoutY="316.0" prefHeight="20.0" prefWidth="12.0" text="1">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="222.0" layoutY="316.0" text="days">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
