@@ -16,6 +16,7 @@ class TestSideEffectConstructor {
 		
 		assertEquals("12/01/2019 05:50 PM", sideEffect.getFormattedDateTime());
 		assertEquals("Numb body", sideEffect.getDescription());
+		assertEquals("12/01/2019 05:50 PM - Numb body", sideEffect.toString());
 	}
 	
 	@Test

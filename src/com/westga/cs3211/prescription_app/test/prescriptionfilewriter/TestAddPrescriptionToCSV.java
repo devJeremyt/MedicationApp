@@ -73,17 +73,4 @@ class TestAddPrescriptionToCSV {
 		assertEquals("blah", prescriptions.get(prescriptions.size()-1).getInstructions());
 		
 	}
-	
-	@Test
-	public void testIOExceptionThrown() {
-		ByteArrayOutputStream errContent = new ByteArrayOutputStream();
-		PrintStream originalOut = System.err;
-		System.setErr(new PrintStream(errContent));
-		
-		PrescriptionFileWriter.addPrescriptionToCSV(".\\src\\com\\westga\\cs3211\\prescription_app\\test\\prescriptionfilewriter\\LockedFile.csv", new Prescription("Gatorade", false, false, true, 1, 1, 1, "Take Meds"));
-
-		assertEquals("asdf", errContent.toString());
-		
-		System.setErr(originalOut);
-	}
 }

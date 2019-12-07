@@ -17,7 +17,6 @@ public class Prescription extends Medication {
 	private int refillDosageCount;
 	private boolean active;
 	private String instructions;
-	private File record;
 	
 	/**
 	 * Creates a new Prescription
@@ -52,23 +51,7 @@ public class Prescription extends Medication {
 		this.refillDosageCount = refillDosageCount;
 		this.active = true;
 		this.instructions = instructions;
-		this.record = new File(this.getName() + " record");
-	}
-	
-	/**
-	 * Reduces the count of doses by one
-	 * 
-	 * @precondition doses > 0
-	 * @postcondition doses== doses@prev - 1
-	 * 
-	 * @return the new count of doses
-	 */
-	public int takePrescription() {
-		if (this.dosageCount <= 0) {
-			throw new IllegalArgumentException(ExceptionMessages.DOSAGE_COUNT_LESS_THAN_ZERO);
-		}
-		
-		return this.dosageCount--;
+
 	}
 	
 	/**
@@ -206,18 +189,6 @@ public class Prescription extends Medication {
 	@Override
 	public String toString() {
 		return this.getName();
-	}
-
-	/**
-	 * Returns the record for the prescription
-	 * 
-	 * @precondition none
-	 * @postcondition none
-	 * 
-	 * @return the file of the records for the prescription
-	 */
-	public File getRecord() {
-		return this.record;
 	}
 
 	
