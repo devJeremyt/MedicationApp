@@ -14,7 +14,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * The public class reminders
+ * The public class Reminders
  * 
  * @author michael jiles
  *
@@ -26,6 +26,9 @@ public class Reminders {
 
 	@FXML
 	private Button viewInstructionsButton;
+	
+    @FXML
+    private Button makeInactiveButton;
 
 	@FXML
 	private Button confirmMedTakenButton;
@@ -53,6 +56,11 @@ public class Reminders {
 	void confirmMedTaken(ActionEvent event) {
 		this.viewmodel.confirmMedTaken(this.remindersListView.getSelectionModel().getSelectedItem());
 	}
+	
+    @FXML
+    void makeMedInactive(ActionEvent event) {
+    	this.viewmodel.makeMedInactive(this.remindersListView.getSelectionModel().getSelectedItem());
+    }
 
 	@FXML
 	void openInstructionsWindow(ActionEvent event) {

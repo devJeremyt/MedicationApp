@@ -2,14 +2,14 @@ package com.westga.cs3211.prescription_app.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Calendar.Builder;
 import java.util.Timer;
 import java.util.TimerTask;
 
 
 /**
  * The Class ReminderManager.
+ * 
+ * @author Michael Jiles
  */
 public class ReminderManager {
 
@@ -96,7 +96,7 @@ public class ReminderManager {
 			
 			for (Reminder reminder : ReminderManager.this.reminders) {
 				reminder.updateTimesReminded();
-				if (this.reminderTimeIsInPast(reminder)) {
+				if (this.reminderTimeIsInPast(reminder) && reminder.isActive()) {
 					if (!ReminderManager.this.remindersBeingDisplayed.contains(reminder)) {
 						ReminderManager.this.remindersBeingDisplayed.add(reminder);
 					}
@@ -125,6 +125,23 @@ public class ReminderManager {
 		private boolean reminderTimeIsInPast(Reminder reminder) {
 			return reminder.getDateTime().isBefore(LocalDateTime.now());
 		}
+	}
+	
+	/**
+	 * Makes medication inactive
+	 * 
+	 * @precondition none
+	 * @postcondition selected item is set to inactive
+	 * @param selectedItem the reminder to be deactivated
+	 */
+	public void makeMedInactive(Reminder selectedItem) {
+		for (Reminder reminder : this.remindersBeingDisplayed) {
+			if (reminder == selectedItem) {
+				reminder.deactivateReminder();
+				this.remindersBeingDisplayed.remove(reminder);
+			}
+		}
+		
 	}
 
 }

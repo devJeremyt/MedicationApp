@@ -226,6 +226,11 @@ public class PrescriptionAppViewModel {
 		this.reminderManager.confirmMedicationTaken(selectedItem);
 		
 	}
+
+	public void makeMedInactive(Reminder selectedItem) {
+		this.reminderManager.makeMedInactive(selectedItem);
+		
+	}
 	
 	
 }

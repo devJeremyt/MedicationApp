@@ -14,6 +14,7 @@ public class Reminder {
 	private int timesReminded;
 	private boolean prescriptionTaken;
 	private int daysBetween;
+	private boolean isActive;
 
 	/**
 	 * Instantiates a new reminder.
@@ -40,6 +41,7 @@ public class Reminder {
 		this.daysBetween = daysBetween;
 		this.prescription = prescription;
 		this.prescriptionTaken = false;
+		this.isActive = true;
 	}
 
 	/**
@@ -49,6 +51,37 @@ public class Reminder {
 	 */
 	public Prescription getPrescription() {
 		return this.prescription;
+	}
+	
+	/**
+	 * Returns whether the prescription is inactive or not.
+	 * 
+	 * @precondition none
+	 * @postcondition none
+	 * @return Whether or not the reminder is active
+	 */
+	public boolean isActive() {
+		return this.isActive;
+	}
+	
+	/**
+	 * Sets isActive to true
+	 * 
+	 * @precondition none
+	 * @postcondition isActive is set to true
+	 */
+	public void activateReminder() {
+		this.isActive = true;
+	}
+	
+	/**
+	 * Sets isActive to false
+	 * 
+	 * @precondition none
+	 * @postcondition isActive is set to false
+	 */
+	public void deactivateReminder()  {
+		this.isActive = false;
 	}
 
 	/**
