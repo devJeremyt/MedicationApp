@@ -20,20 +20,33 @@ public class Reminders {
 
 	@FXML
 	private Button viewInstructionsButton;
+	
+    @FXML
+    private Button confirmMedTakenButton;
 
 	private PrescriptionAppViewModel viewmodel;
 
 	@FXML
 	private void initialize() {
+		this.viewInstructionsButton.disableProperty().set(true);
+		this.confirmMedTakenButton.disableProperty().set(true);
+		
 		this.remindersListView.getSelectionModel().selectedItemProperty()
 		.addListener((observable, oldValue, newValue) -> {
 			if (newValue != null) {
 				this.viewInstructionsButton.disableProperty().set(false);
+				this.confirmMedTakenButton.disableProperty().set(false);
 			} else {
 				this.viewInstructionsButton.disableProperty().set(true);
+				this.confirmMedTakenButton.disableProperty().set(true);
 			}
 		});
 	}
+	
+    @FXML
+    void confirmMedTaken(ActionEvent event) {
+    	this.viewmodel.confirmMedTaken(this.remindersListView.getSelectionModel().getSelectedItem());
+    }
 
 	@FXML
 	void openInstructionsWindow(ActionEvent event) {
